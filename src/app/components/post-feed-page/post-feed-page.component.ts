@@ -4,6 +4,7 @@ import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-feed-page',
@@ -21,7 +22,7 @@ export class PostFeedPageComponent implements OnInit {
   posts: Post[] = [];
   createPost:boolean = false;
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.postService.getAllPosts().subscribe(
@@ -44,5 +45,9 @@ export class PostFeedPageComponent implements OnInit {
           this.toggleCreatePost()
         }
       )
+  }
+
+  goToUserProfile(): void {
+    this.router.navigate(['user-profile']);
   }
 }
