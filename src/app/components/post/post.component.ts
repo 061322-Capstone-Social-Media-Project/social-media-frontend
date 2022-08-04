@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { LikesService } from 'src/app/services/likes.service';
 import { Likes } from 'src/app/models/likes';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -20,28 +21,42 @@ export class PostComponent implements OnInit {
   @Input('post') post: Post
   replyToPost: boolean = false
   like: boolean = false
-  like_text: String
+  like_text: String 
   likes:Likes
+  likeId: number;
 
   constructor(private postService: PostService, private authService: AuthService, private ls: LikesService) { }
 
   ngOnInit(): void {
-    this.like_text = "Like"
     console.log(this.post)
+    //sending
+   this.ls.getLike(this.authService.currentUser.id,this.post.id).subscribe((response)=>{ 
+      if(response != null){
+        this.likeId = response.id;
+        this.like_text = "Unlike"
+
+
+    }else{
+      this.like_text = "Like" 
+    }
+     
+    })
+
+
   }
 
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
   likeSwitch = () => {
+    this.ls.getLike(this.authService.currentUser.id,this.post.id).subscribe((response)=>{console.log(response)})
     if(this.like == true){
-      this.like_text = "Like";
-      this.likes = new Likes(0,this.post.id,this.post.author.id);
+    this.likes = new Likes(0,this.post.author.id,this.post.id);
 
       this.ls.postLike(this.likes);
 
     }else{
-      this.like_text = "Unlike";
+
      
     }
     

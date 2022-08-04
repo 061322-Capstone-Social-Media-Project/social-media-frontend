@@ -22,9 +22,11 @@ export class LikesService {
 
     return this.http.delete<Likes>(`${this.likesUrl}/${id}`).subscribe()
   }
-  getLike(post_id: number,user_id: number){
+  getLike(post_id: number,user_id: number): Observable<Likes> {
 
-    
+    return this.http.get<Likes>(`${this.likesUrl}/user/${user_id}/post/${post_id}`)
+
   }
+  
 }
 
