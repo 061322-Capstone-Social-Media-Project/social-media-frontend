@@ -6,6 +6,7 @@ pipeline {
         IMAGE_TAG = "social_media_angular"
         CONTAINER_NAME = "social_media_angular_container"
     }
+    tools {nodejs "nodejs"}
     stages {
         stage('remove existing container') {
             steps {
