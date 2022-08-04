@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { LikesService } from 'src/app/services/likes.service';
+import { Likes } from 'src/app/models/likes';
 
 @Component({
   selector: 'app-post',
@@ -17,14 +19,33 @@ export class PostComponent implements OnInit {
 
   @Input('post') post: Post
   replyToPost: boolean = false
+  like: boolean = false
+  like_text: String
+  likes:Likes
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService, private ls: LikesService) { }
 
   ngOnInit(): void {
+    this.like_text = "Like"
+    console.log(this.post)
   }
 
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
+  }
+  likeSwitch = () => {
+    if(this.like == true){
+      this.like_text = "Like";
+      this.likes = new Likes(0,this.post.id,this.post.author.id);
+
+      this.ls.postLike(this.likes);
+
+    }else{
+      this.like_text = "Unlike";
+     
+    }
+    
+    this.like = !this.like
   }
 
   submitReply = (e: any) => {
