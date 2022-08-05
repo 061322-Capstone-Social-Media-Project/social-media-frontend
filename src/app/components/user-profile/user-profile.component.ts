@@ -3,6 +3,8 @@ import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import Post from 'src/app/models/Post';
 import { PostService } from 'src/app/services/post.service';
+import { UserProfileService } from 'src/app/services/user-profile.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,7 +16,8 @@ export class UserProfileComponent implements OnInit {
   user: User = {} as User;
   posts: Post[] = [];
 
-  constructor(private authService: AuthService, private postService: PostService) { 
+  constructor(private userProfile: UserProfileService, private authService: AuthService,
+     private postService: PostService, private router:Router) { 
   }
 
   ngOnInit(): void {
@@ -24,6 +27,10 @@ export class UserProfileComponent implements OnInit {
         this.posts = response
       }
     )
+  }
+
+  updateUser(){
+    this.router.navigate(['update-user']);
   }
 
 }
