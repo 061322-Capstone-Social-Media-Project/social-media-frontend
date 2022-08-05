@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { LikesService } from 'src/app/services/likes.service';
 import { Likes } from 'src/app/models/likes';
-import { empty } from 'rxjs';
+import { empty, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -19,49 +19,54 @@ export class PostComponent implements OnInit {
   })
 
   @Input('post') post: Post
-  replyToPost: boolean = false
-  like: boolean = false
-  like_text: String
-  likes: Likes
+  replyToPost: boolean = false;
+  like: boolean;
+  like_text: String;
+  likes: Likes;
   likeId: number;
-
+  likeButton: boolean;
   constructor(private postService: PostService, private authService: AuthService, private ls: LikesService) { }
 
   ngOnInit(): void {
-    console.log(this.post)
     //sending
-    this.ls.getLike(this.authService.currentUser.id, this.post.id).subscribe((response) => {
-      if (response != null) {
-        this.likeId = response.id;
-        this.like_text = "Unlike"
-
-
-      } else {
-        this.like_text = "Like"
-      }
-
-    })
-
-
+    this.setLikes();
+    this.likeButton = false;
   }
 
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
   likeSwitch = () => {
-
-    if (this.like == true) {
+    this.likeButton = true;
+    if (this.like === true) {
+      console.log("add");
       this.likes = new Likes(0, this.post.author.id, this.post.id);
-      this.like_text = "Unlike"
-      this.ls.postLike(this.likes);
 
-    } else {
-      this.like_text = "Like"
-      this.ls.removeLike(this.likeId);
+      this.ls.postLike(this.likes).subscribe((response) => {
+        this.like_text = "Unlike";
+        this.like = false;
+        this.setLikes();
+        this.likeButton = false;
+      }, (error) => {
+        console.log("error");
+        console.log(error);
+      }
+      );
+    } else if (this.like === false) {
+      this.ls.removeLike(this.likeId).subscribe((response) => {
+        this.like_text = "Like";
+        this.like = true;
+        this.setLikes();
+        this.likeButton = false;
+      }, (error) => {
+        console.log("error");
+        console.log(error);
+      }
+      );
     }
 
     this.like = !this.like
-    this.ls.getLike(this.authService.currentUser.id, this.post.id).subscribe((response) => { console.log(response) });
+
   }
 
   submitReply = (e: any) => {
@@ -74,5 +79,24 @@ export class PostComponent implements OnInit {
           this.toggleReplyToPost()
         }
       )
+  }
+
+  setLikes() {
+    this.ls.getLike(this.authService.currentUser.id, this.post.id).subscribe((response) => {
+      if (response != null) {
+        this.likeId = response.id;
+        this.like_text = "Unlike";
+        this.like = false;
+      } else {
+        this.like_text = "Like";
+        this.like = true;
+
+      }
+
+    }, (error) => {
+      console.log("error");
+      console.log(error);
+    }
+    );
   }
 }

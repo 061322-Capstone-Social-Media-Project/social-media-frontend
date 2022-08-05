@@ -14,17 +14,15 @@ export class LikesService {
   constructor(private http: HttpClient) { }
 
   postLike(likes: Likes) {
-    console.log(likes)
-    console.log(this.likesUrl)
-    return this.http.post<Likes>(this.likesUrl, likes, { headers: environment.headers, withCredentials: environment.withCredentials }).subscribe()
+
+    return this.http.post<Likes>(this.likesUrl, likes, { headers: environment.headers, withCredentials: environment.withCredentials });
   }
   removeLike(id: number) {
 
-    return this.http.delete<Likes>(`${this.likesUrl}/${id}`).subscribe()
+    return this.http.delete<Likes>(`${this.likesUrl}/${id}`);
   }
   getLike(user_id: number, post_id: number): Observable<Likes> {
-    console.log(`${this.likesUrl}/user/${user_id}/post/${post_id}`)
-    return this.http.get<Likes>(`${this.likesUrl}/user/${user_id}/post/${post_id}`)
+    return this.http.get<Likes>(`${this.likesUrl}/user/${user_id}/post/${post_id}`);
 
   }
 
