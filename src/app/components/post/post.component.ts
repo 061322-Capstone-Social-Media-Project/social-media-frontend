@@ -48,8 +48,8 @@ export class PostComponent implements OnInit {
         this.setLikes();
         this.likeButton = false;
       }, (error) => {
-        console.log("error");
-        console.log(error);
+        // console.log("error");
+        // console.log(error);
       }
       );
     } else if (this.like === false) {
@@ -59,8 +59,8 @@ export class PostComponent implements OnInit {
         this.setLikes();
         this.likeButton = false;
       }, (error) => {
-        console.log("error");
-        console.log(error);
+        // console.log("error");
+        // console.log(error);
       }
       );
     }
@@ -94,8 +94,8 @@ export class PostComponent implements OnInit {
       }
 
     }, (error) => {
-      console.log("error");
-      console.log(error);
+      // console.log("error");
+      // console.log(error);
     }
     );
   }
