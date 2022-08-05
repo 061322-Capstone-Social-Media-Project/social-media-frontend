@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        PORT_HOST = "80"
+        PORT_HOST = "4200"
         PORT_CONT = "80"
         IMAGE_TAG = "social_media_angular"
         CONTAINER_NAME = "social_media_angular_container"
