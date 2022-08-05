@@ -16,6 +16,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     NavbarComponent,
     UserInitialsPipe,
     UserProfileComponent,
+    UserUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

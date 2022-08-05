@@ -1,0 +1,14 @@
+<p>user-update works!</p>
+<form>
+    <input type = "text" name = "username" placeholder = "{{currentUser.username}}" [(ngModel)]="username">
+    <input type = "text" name = "password" placeholder = "{{currentUser.password}}" [(ngModel)]="password">
+    <input type = "text" name = "firstName" placeholder = "{{currentUser.firstName}}" [(ngModel)]="firstName">
+    <input type = "text" name = "lastName" placeholder = "{{currentUser.lastName}}" [(ngModel)]="lastName">
+    <input type = "text" name = "location" placeholder = "{{currentUser.location}}" [(ngModel)]="location">
+    <input type = "text" name = "namePronunciation" placeholder = "{{currentUser.namePronunciation}}" [(ngModel)]="namePronunciation">
+    <input type = "text" name = "profilePic" placeholder = "{{currentUser.profilePic}}" [(ngModel)]="profilePic">
+    <input type = "text" name = "professionalUrl" placeholder = "{{currentUser.professionalURL}}" [(ngModel)]="professionalUrl">
+    <input type = "text" name = "email" placeholder = "{{currentUser.email}}" [(ngModel)]="email">
+    <button (click) = "updateUser()">UpdateUser</button>
+</form>
+
