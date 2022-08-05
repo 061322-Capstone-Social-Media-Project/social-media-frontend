@@ -16,7 +16,6 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { ModalComponent } from './components/modal/modal.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { FormsModule } from '@angular/forms';
 
@@ -32,7 +31,6 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     UserInitialsPipe,
     UserProfileComponent,
-    ModalComponent,
     UserUpdateComponent,
   ],
   imports: [
