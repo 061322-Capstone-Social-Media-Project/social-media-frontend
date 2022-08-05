@@ -49,7 +49,7 @@ export class PostComponent implements OnInit {
     this.replyToPost = !this.replyToPost
   }
   likeSwitch = () => {
-    this.ls.getLike(this.authService.currentUser.id,this.post.id).subscribe((response)=>{console.log(response)})
+    
     if(this.like == true){
     this.likes = new Likes(0,this.post.author.id,this.post.id);
 
@@ -61,6 +61,7 @@ export class PostComponent implements OnInit {
     }
     
     this.like = !this.like
+    this.ls.getLike(this.authService.currentUser.id,this.post.id).subscribe((response)=>{console.log(response)});
   }
 
   submitReply = (e: any) => {
