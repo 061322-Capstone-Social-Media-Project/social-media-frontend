@@ -9,24 +9,24 @@ import { Likes } from '../models/likes';
 })
 export class LikesService {
   likesUrl: string = `${environment.baseUrl}/likes`
-  
+
 
   constructor(private http: HttpClient) { }
-  
+
   postLike(likes: Likes) {
     console.log(likes)
     console.log(this.likesUrl)
-    return this.http.post<Likes>(this.likesUrl,likes, {headers: environment.headers, withCredentials: environment.withCredentials}).subscribe()
+    return this.http.post<Likes>(this.likesUrl, likes, { headers: environment.headers, withCredentials: environment.withCredentials }).subscribe()
   }
-  removeLike(id: number){
+  removeLike(id: number) {
 
     return this.http.delete<Likes>(`${this.likesUrl}/${id}`).subscribe()
   }
-  getLike(post_id: number,user_id: number): Observable<Likes> {
+  getLike(user_id: number, post_id: number): Observable<Likes> {
     console.log(`${this.likesUrl}/user/${user_id}/post/${post_id}`)
     return this.http.get<Likes>(`${this.likesUrl}/user/${user_id}/post/${post_id}`)
 
   }
-  
+
 }
 

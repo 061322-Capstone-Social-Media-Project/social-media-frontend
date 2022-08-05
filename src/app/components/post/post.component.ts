@@ -21,8 +21,8 @@ export class PostComponent implements OnInit {
   @Input('post') post: Post
   replyToPost: boolean = false
   like: boolean = false
-  like_text: String 
-  likes:Likes
+  like_text: String
+  likes: Likes
   likeId: number;
 
   constructor(private postService: PostService, private authService: AuthService, private ls: LikesService) { }
@@ -30,16 +30,16 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.post)
     //sending
-   this.ls.getLike(this.authService.currentUser.id,this.post.id).subscribe((response)=>{ 
-      if(response != null){
+    this.ls.getLike(this.authService.currentUser.id, this.post.id).subscribe((response) => {
+      if (response != null) {
         this.likeId = response.id;
         this.like_text = "Unlike"
 
 
-    }else{
-      this.like_text = "Like" 
-    }
-     
+      } else {
+        this.like_text = "Like"
+      }
+
     })
 
 
@@ -49,25 +49,25 @@ export class PostComponent implements OnInit {
     this.replyToPost = !this.replyToPost
   }
   likeSwitch = () => {
-    
-    if(this.like == true){
-    this.likes = new Likes(0,this.post.author.id,this.post.id);
 
+    if (this.like == true) {
+      this.likes = new Likes(0, this.post.author.id, this.post.id);
+      this.like_text = "Unlike"
       this.ls.postLike(this.likes);
 
-    }else{
-
-     
+    } else {
+      this.like_text = "Like"
+      this.ls.removeLike(this.likeId);
     }
-    
+
     this.like = !this.like
-    this.ls.getLike(this.authService.currentUser.id,this.post.id).subscribe((response)=>{console.log(response)});
+    this.ls.getLike(this.authService.currentUser.id, this.post.id).subscribe((response) => { console.log(response) });
   }
 
   submitReply = (e: any) => {
     e.preventDefault()
     let newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [])
-    this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
+    this.postService.upsertPost({ ...this.post, comments: [...this.post.comments, newComment] })
       .subscribe(
         (response) => {
           this.post = response
