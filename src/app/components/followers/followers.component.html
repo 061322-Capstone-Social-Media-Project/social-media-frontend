@@ -1,1 +1,17 @@
-<p>followers works!</p>
+<h1>Followers</h1>
+<div id="followers-container">
+    <div class="pagination">
+        <button (click)="getPrev()" [disabled]='prev == ""'>Prev</button>
+        <p>{{pageNumber}}</p>
+        <button (click)="getNext()" [disabled]='next == ""'>Next</button>
+    </div>
+    <div>
+        <app-follower-card *ngFor="let u of users" [user]="u" (callParent)="getMsgFromChild($event)"></app-follower-card>
+    </div>
+    <div class="pagination">
+        <button [disabled]='prev == ""' (click)="getPrev()">Prev</button>
+        <p>{{pageNumber}}</p>
+        <button [disabled]='next == ""' (click)="getNext()">Next</button>
+    </div>
+</div>
+
