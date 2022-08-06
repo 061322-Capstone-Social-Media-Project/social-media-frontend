@@ -21,25 +21,18 @@ export class LikesComponent implements OnInit {
   likeButton: boolean;
   constructor(private authService: AuthService, private ls: LikesService) { }
   ngOnInit(): void {
-    //sending
     this.setLikes();
     this.likeButton = false;
   }
 
-
   likeSwitch = () => {
     this.likeButton = true;
     if (this.like === true) {
-      console.log("add");
       this.likes = new Likes(0, this.post.author.id, this.post.id);
-
       this.ls.postLike(this.likes).subscribe((response) => {
-
         this.setLikes();
       }, (error) => {
         this.setLikes();
-        // console.log("error");
-        // console.log(error);
       }
       );
     } else if (this.like === false) {
@@ -50,9 +43,7 @@ export class LikesComponent implements OnInit {
       }
       );
     }
-
     this.like = !this.like
-
   }
 
 
@@ -62,15 +53,13 @@ export class LikesComponent implements OnInit {
         this.likeId = response.id;
         this.like_text = "Unlike";
         this.like = false;
+        this.likeButton = false;
       } else {
         this.like_text = "Like";
         this.like = true;
-
+        this.likeButton = false;
       }
-      this.likeButton = false;
     }, (error) => {
-      // console.log("error");
-      // console.log(error);
     }
     );
   }
