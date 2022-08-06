@@ -11,16 +11,16 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email: new FormControl('ftest@gmail.com'),
-    password: new FormControl('pass123')
+    email: new FormControl(''),
+    password: new FormControl('')
   })
-  
+
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
-  
+
   onSubmit(e: any): void {
     e.preventDefault()
     this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
