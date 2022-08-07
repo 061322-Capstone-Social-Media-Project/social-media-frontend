@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import User from '../models/User';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,11 @@ export class UserProfileService {
         console.log(val);
       });
 
+  }
+
+  public getUserById(id: string): Observable<User> {
+    const url = `${environment.baseUrl}/user-profile`;
+    let queryParams = new HttpParams().append("id", id);
+    return this.http.get<User>(url, {params:queryParams});
   }
 }

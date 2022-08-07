@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import Post from 'src/app/models/Post';
 import { PostService } from 'src/app/services/post.service';
 import { UserProfileService } from 'src/app/services/user-profile.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,15 +13,25 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
-  user: User = {} as User;
+  user: User;
   posts: Post[] = [];
+  id: string;
 
-  constructor(private userProfile: UserProfileService, private authService: AuthService,
-     private postService: PostService, private router:Router) { 
+  constructor(private userProfileService: UserProfileService, private authService: AuthService,
+     private postService: PostService, private router:Router, private route: ActivatedRoute) { 
   }
 
   ngOnInit(): void {
-    this.user = this.authService.currentUser
+    this.route.queryParams
+      .subscribe(params => {
+        this.id = params['id'];
+      }
+    );
+    this.userProfileService.getUserById(this.id).subscribe(
+      (response) => {
+        this.user = response
+      }
+    )
     this.postService.getAllPosts().subscribe(
       (response) => {
         this.posts = response

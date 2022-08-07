@@ -46,8 +46,4 @@ export class PostFeedPageComponent implements OnInit {
         }
       )
   }
-
-  goToUserProfile(): void {
-    this.router.navigate(['user-profile']);
-  }
 }
