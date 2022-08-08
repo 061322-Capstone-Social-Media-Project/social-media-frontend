@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UserProfileComponent implements OnInit {
 
   user: User;
+  loggedInUser: User;
   posts: Post[] = [];
   id: string;
 
@@ -27,6 +28,7 @@ export class UserProfileComponent implements OnInit {
         this.id = params['id'];
       }
     );
+    this.loggedInUser = this.authService.currentUser;
     this.userProfileService.getUserById(this.id).subscribe(
       (response) => {
         this.user = response
@@ -34,9 +36,10 @@ export class UserProfileComponent implements OnInit {
     )
     this.postService.getAllPosts().subscribe(
       (response) => {
-        this.posts = response
+        this.posts = response;
       }
     )
+    // console.log("Current user: " + JSON.stringify(this.authService.currentUser));
   }
 
   updateUser(){

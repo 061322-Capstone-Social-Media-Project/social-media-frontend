@@ -10,8 +10,9 @@
           <p class="text-muted mb-1">{{user.namePronunciation}}</p>
           <p class="text-muted mb-4">{{user.location}}</p>
           <div class="d-flex justify-content-center mb-2">
-            <button type="button" class="btn btn-primary">Follow</button>
-            <button type="button" class="btn btn-primary" (click) = "updateUser()">UpdateUser</button>
+            <!-- Follow button if visiting other user, Update button if your own profile -->
+            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id">Follow</button>
+            <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
       <div class="row">
         <div class="col-md-8">
                 <div class = "w-100" id="post-feed" *ngFor="let post of posts">
-                    <app-post [post]="post"></app-post>
+                    <app-post [post]="post" *ngIf="user.id === post.author.id"></app-post>
               </div>
         </div>
         <div class="col-md-4">
