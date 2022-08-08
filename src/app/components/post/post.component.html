@@ -16,6 +16,7 @@
             </div>
         </mat-card-content>
         <mat-card-actions align="end">
+            <app-likes [post]="post"> </app-likes> &nbsp;
             <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
         </mat-card-actions>
         <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
