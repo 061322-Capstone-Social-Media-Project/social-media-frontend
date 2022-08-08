@@ -10,8 +10,9 @@
           <p class="text-muted mb-1">{{user.namePronunciation}}</p>
           <p class="text-muted mb-4">{{user.location}}</p>
           <div class="d-flex justify-content-center mb-2">
-            <!-- Follow button if visiting other user, Update button if your own profile -->
+            <!-- If viewing other profile -->
             <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id">Follow</button>
+            <!-- If viewing own profile -->
             <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
           </div>
         </div>
