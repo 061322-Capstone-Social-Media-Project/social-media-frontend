@@ -20,6 +20,9 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private userProfileService: UserProfileService, private authService: AuthService,
      private postService: PostService, private router:Router, private route: ActivatedRoute) { 
+      //console.log("the constructor is called");
+      //this.user = authService.currentUser;
+      this.ngOnInit();
   }
 
   ngOnInit(): void {

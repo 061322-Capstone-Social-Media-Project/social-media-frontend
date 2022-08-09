@@ -18,14 +18,15 @@ export class UserProfileService {
   }
 
   updateUser(email:string,password:string,firstName:string,lastName:string,
-    username:string, location:string, namePronunciation: string, professionalURL: string, profilePic:string){
+    username:string, location:string, namePronunciation: string, professionalURL: string, id: any) {
+      //console.log("updateUser id:" + id);
       const payload = {firstName:firstName,lastName:lastName,email: email, password:password, location:location,
-        username:username,professionalURL:professionalURL,namePronunciation:namePronunciation, 
-        profilePic:profilePic,id:this.currentUser.id};
-        console.log('current user'+ this.currentUser);
+        username:username,professionalURL:professionalURL,namePronunciation:namePronunciation,id:this.currentUser.id};
+        //console.log('current user'+ this.currentUser);
       this.http.put(this.updateURL, payload,{headers: environment.headers}).subscribe(val=>{
         console.log('updating:');
         console.log(val);
+        //this.authService.currentUser = val as User;
       });
 
   }

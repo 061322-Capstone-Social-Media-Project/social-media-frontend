@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserProfileService } from 'src/app/services/user-profile.service';
@@ -18,12 +19,11 @@ export class UserUpdateComponent implements OnInit {
   username:string;
   password:string;
   professionalUrl:string;
-  profilePic: string;
   location:string;
   namePronunciation:string;
 
 
-  constructor(private authService: AuthService, private userService: UserProfileService) {
+  constructor(private authService: AuthService, private userService: UserProfileService, private router: Router) {
     this.currentUser = authService.currentUser;
     this.id = this.currentUser.id;
     this.email = this.currentUser.email;
@@ -32,10 +32,8 @@ export class UserUpdateComponent implements OnInit {
     this.username = this.currentUser.username;
     this.password = this.currentUser.password;
     this.professionalUrl = this.currentUser.professionalURL;
-    this.profilePic = this.currentUser.profilePic;
     this.location = this.currentUser.location;
     this.namePronunciation = this.currentUser.namePronunciation;
-    console.log(this.currentUser);
    }
 
   ngOnInit(): void {
@@ -43,9 +41,10 @@ export class UserUpdateComponent implements OnInit {
 
 
   updateUser(){
-    //console.log(this.currentUser);
-    
     this.userService.updateUser(this.email,this.password,this.firstName,this.lastName,this.username,
-      this.location,this.namePronunciation,this.professionalUrl,this.profilePic);
+      this.location,this.namePronunciation,this.professionalUrl, this.id);
+
+      //this.router.navigate(['user-profile', {id:this.id}]); 
+
   }
 }
