@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,6 +13,7 @@ describe('FollowerCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ FollowerCardComponent ],
       providers: [{ provide: User, useValue: {
         id: 1,
@@ -37,7 +39,7 @@ describe('FollowerCardComponent', () => {
     component.user = user;
     const spy = spyOn(component, 'callParent');
     // spyOn(component, 'unfollow').and.callThrough();
-    component.unfollow(user.id);
+    component.unfollow();
     expect(spy).toHaveBeenCalled();
   });
 });

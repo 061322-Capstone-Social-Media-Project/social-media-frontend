@@ -35,16 +35,16 @@ describe('FollowerService', () => {
     expect(service).toBeTruthy();
   });
 
-  it("Get Current User", (done) => {
+  // it("Get Current User", (done) => {
    
-    //might need to change authService from the real one to a mock class
-    //if it messes with any production things.
-    authService.currentUser = user;
-    spyOn(service, 'getCurrentUser').and.returnValue(authService.currentUser);
-    let actualUser = service.getCurrentUser();
-    expect(actualUser).toEqual(user);
-    done();
-  });
+  //   //might need to change authService from the real one to a mock class
+  //   //if it messes with any production things.
+  //   authService.currentUser = user;
+  //   spyOn(service, 'getCurrentUser').and.returnValue(authService.currentUser);
+  //   let actualUser = service.getCurrentUser();
+  //   expect(actualUser).toEqual(user);
+  //   done();
+  // });
     
 
   it('Should get followers', (done) => {

@@ -1,5 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FollowerService } from 'src/app/services/follower.service';
 import { environment } from 'src/environments/environment';
 
 import { FollowersComponent } from './followers.component';
@@ -7,9 +8,11 @@ import { FollowersComponent } from './followers.component';
 describe('FollowersComponent', () => {
   let component: FollowersComponent;
   let fixture: ComponentFixture<FollowersComponent>;
+  let followerService: FollowerService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[HttpClientTestingModule],
       declarations: [ FollowersComponent ]
     })
     .compileComponents();
@@ -17,6 +20,7 @@ describe('FollowersComponent', () => {
     fixture = TestBed.createComponent(FollowersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    followerService = TestBed.inject(FollowerService);
   });
 
   it('should create', () => {
@@ -27,10 +31,12 @@ describe('FollowersComponent', () => {
     let expectedId: number = 1;
     let actualId: number = 0;
     spyOn(component, 'getMsgFromChild').and.callThrough();
+    let spyRemoveFollowing = spyOn(followerService, 'removeFollowing').and.stub();
     component.getMsgFromChild(expectedId);
 
     actualId = component.unFollowUserId;
     expect(actualId).toEqual(expectedId);
+    expect(spyRemoveFollowing).toHaveBeenCalled();
   });
   
   it('Should increase the list of followers by 10 when going to next page', () => {
