@@ -36,16 +36,16 @@ describe('FollowersComponent', () => {
   it('Should increase the list of followers by 10 when going to next page', () => {
     let expectedOffset: number = 20;
     let expectedPageNumber: number = 2;
-    let actualPageNumber: number = 1;
-    let actualOffset: number = 10;
+    let actualPageNumber: number;
+    let actualOffset: number;
 
-    //callFake here since we don't want to test the api call, just if the offset is increased.
-    //Also, the offsets and pagenumbers are written almost the exact same way as in the actual function.
-    spyOn(component, 'getNext').and.callFake(function(){
-      actualOffset = actualOffset + 10;
-      actualPageNumber = actualPageNumber + 1;
-    });
+    component.offsetBy = 10;
+    component.pageNumber = 1;
+
+    spyOn(component, 'getNext').and.callThrough()
     component.getNext();
+    actualPageNumber = component.pageNumber;
+    actualOffset = component.offsetBy;
     expect(actualOffset).toEqual(expectedOffset);
     expect(actualPageNumber).toEqual(expectedPageNumber);
   });
@@ -53,16 +53,16 @@ describe('FollowersComponent', () => {
   it('Should decrease the list of followers by 10 when going to the previous page', () => {
     let expectedOffset: number = 10;
     let expectedPageNumber: number = 1;
-    let actualPageNumber: number = 2;
-    let actualOffset: number = 20;
+    let actualPageNumber: number;
+    let actualOffset: number;
 
-    //callFake here since we don't want to test the api call, just if the offset is decreased.
-    //Also, the offsets and pagenumbers are written almost the exact same way as in the actual function.
-    spyOn(component, 'getPrev').and.callFake(function(){
-      actualOffset = actualOffset - 10;
-      actualPageNumber = actualPageNumber - 1;
-    });
+    component.pageNumber = 2;
+    component.offsetBy = 20;
+
+    spyOn(component, 'getPrev').and.callThrough();
     component.getPrev();
+    actualOffset = component.offsetBy;
+    actualPageNumber = component.pageNumber;
     expect(actualOffset).toEqual(expectedOffset);
     expect(actualPageNumber).toEqual(expectedPageNumber);
   });
@@ -75,4 +75,24 @@ describe('FollowersComponent', () => {
     component.getNext();
     expect(component.prev).toEqual(expectedPrev);
   });
+  
+  it('Should return first if statement in getPrev when offsetBy != 0 and offset == 10', () => {
+    component.offsetBy = 20;
+    let expectedNext = `${environment.baseUrl}/followers?limit=10`;
+
+    spyOn(component, 'getPrev').and.callThrough();
+    component.getPrev();
+    expect(component.prev).toEqual(expectedNext);
+  })
+
+  it('Should not return first if statement in getPrev when offsetBy != 0 and offset >= 10', () => {
+    component.offsetBy = 30;
+    let expectedNext = `${environment.baseUrl}/followers?offset=20&limit=10`;
+
+    spyOn(component, 'getPrev').and.callThrough();
+    component.getPrev();
+    expect(component.prev).toEqual(expectedNext);
+  })
+
+
 });
