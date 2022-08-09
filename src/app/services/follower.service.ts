@@ -12,43 +12,43 @@ export class FollowerService {
 
   followersUrl: string = `${environment.baseUrl}/followers`
   followingUrl: string = `${environment.baseUrl}/following`
-  followers: User[]
-  following: User[]
+  currentUser: User
 
   constructor(private http: HttpClient, private auth: AuthService) {
-    this.getFollowers().subscribe((response) => {
-      this.followers = response;
-    })
-    this.getFollowing().subscribe((response) => {
-      this.following = response;
-    })
-   }
+    let user = sessionStorage.getItem('user')
+    if (user) {
+      this.currentUser = JSON.parse(user);
+    }
+  }
 
   getCurrentUser(): User {
     return this.auth.currentUser
   }
 
   getFollowing(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.followingUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
+    console.log('getFollowing invoked')
+    return this.http.get<User[]>(`${this.followingUrl}`, { headers: environment.headers, withCredentials: environment.withCredentials })
   }
 
   getFollowers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.followersUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
+    return this.http.get<User[]>(`${this.followersUrl}`, { headers: environment.headers, withCredentials: environment.withCredentials })
   }
 
-  addFollowing(userId: number): Observable<any> {
-    return this.http.post<User[]>(`${this.followingUrl}`, 
-    {
-      'followerId' : this.getCurrentUser().id,
-      'followingId' : userId
-    }, {headers: environment.headers, withCredentials: environment.withCredentials} )
+  addFollowing(followingId: number): Observable<any> {
+    return this.http.post(`${this.followingUrl}`,
+      {
+        'followerId': this.currentUser.id,
+        'followingId': followingId
+      }, { headers: environment.headers, withCredentials: environment.withCredentials })
   }
 
-  removeFollowing(userId: number): Observable<any> {
-    return this.http.delete<User[]>(`${this.followingUrl}`, { headers: environment.headers,
-    body: {
-      'followerId' : this.getCurrentUser().id,
-      'followingId' : userId
-    }})
+  removeFollowing(followingId: number): Observable<any> {
+    return this.http.delete(`${this.followingUrl}`, {
+      headers: environment.headers, withCredentials: environment.withCredentials,
+      body: {
+        'followerId': this.currentUser.id,
+        'followingId': followingId
+      }
+    })
   }
 }

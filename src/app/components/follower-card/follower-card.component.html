@@ -1,5 +1,5 @@
-<div id="follower-card">
+<div [ngClass]="{'following' : view == 'Following', 'follower' : view == 'Followers'}">
     <img src="http://picsum.photos/50/50" alt="Profile image" />
     <p>{{user.firstName}} {{user.lastName}}</p>
-    <button (click)="unfollow(user.id)">Unfollow</button>
+    <button *ngIf="view == 'Following'" (click)="unfollow()">Unfollow</button>
 </div>
