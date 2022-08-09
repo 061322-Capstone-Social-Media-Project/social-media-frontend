@@ -42,4 +42,12 @@ export class FollowerService {
       }
     })
   }
+
+  isFollowing(userId: number) {
+    return this.http.post(`${environment.baseUrl}/followed`,
+      {
+        'followerId': this.auth.currentUser.id,
+        'followingId': userId
+      }, { headers: environment.headers, withCredentials: environment.withCredentials })
+  }
 }

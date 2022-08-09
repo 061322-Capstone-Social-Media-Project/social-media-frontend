@@ -12,12 +12,12 @@ export class SearchComponent implements OnInit {
   followUserId: number;
 
   constructor() { 
-    this.users.push(new User(2, "ah@gmail.com", "Adam", "Harbeck"));
-    this.users.push(new User(3, "cp@gmail.com", "Calvin", "Post"));
-    this.users.push(new User(4, "tr@gmail.com", "Trey", "Ratcliff"));
-    this.users.push(new User(5, "lm@gmail.com", "Lane", "McSpadden"));
-    this.users.push(new User(6, "sz@gmail.com", "Shouchuang", "Zhu"));
-    this.users.push(new User(7, "be@gmail.com", "Bryan", "Epperson"));
+    // this.users.push(new User(2, "ah@gmail.com", "Adam", "Harbeck"));
+    // this.users.push(new User(3, "cp@gmail.com", "Calvin", "Post"));
+    // this.users.push(new User(4, "tr@gmail.com", "Trey", "Ratcliff"));
+    // this.users.push(new User(5, "lm@gmail.com", "Lane", "McSpadden"));
+    // this.users.push(new User(6, "sz@gmail.com", "Shouchuang", "Zhu"));
+    // this.users.push(new User(7, "be@gmail.com", "Bryan", "Epperson"));
   }
 
   ngOnInit(): void {

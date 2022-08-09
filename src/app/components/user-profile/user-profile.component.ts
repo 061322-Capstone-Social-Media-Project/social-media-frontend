@@ -5,6 +5,7 @@ import Post from 'src/app/models/Post';
 import { PostService } from 'src/app/services/post.service';
 import { UserProfileService } from 'src/app/services/user-profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FollowerService } from 'src/app/services/follower.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,10 +16,11 @@ export class UserProfileComponent implements OnInit {
 
   user: User;
   loggedInUser: User;
+  following: boolean
   posts: Post[] = [];
   id: string;
 
-  constructor(private userProfileService: UserProfileService, private authService: AuthService,
+  constructor(private userProfileService: UserProfileService, private authService: AuthService, private followService: FollowerService,
      private postService: PostService, private router:Router, private route: ActivatedRoute) { 
       //console.log("the constructor is called");
       //this.user = authService.currentUser;
@@ -35,6 +37,11 @@ export class UserProfileComponent implements OnInit {
     this.userProfileService.getUserById(this.id).subscribe(
       (response) => {
         this.user = response
+        this.followService.isFollowing(response.id).subscribe((data:any) => {
+          console.warn(data)
+          this.following = data.following;
+          console.log(this.following)
+        })
       }
     )
     this.postService.getAllPosts().subscribe(
@@ -51,6 +58,18 @@ export class UserProfileComponent implements OnInit {
 
   toUserProfilePicture(){
     this.router.navigate(['user-profile-picture']);
+  }
+
+  follow() {
+    console.log('executing follow')
+    this.followService.addFollowing(this.user.id).subscribe();
+    this.ngOnInit()
+  }
+
+  unfollow() {
+    console.log('executing unfollow')
+    this.followService.removeFollowing(this.user.id).subscribe();
+    this.ngOnInit();
   }
 
 }
