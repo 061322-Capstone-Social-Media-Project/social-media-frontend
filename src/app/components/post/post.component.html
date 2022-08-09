@@ -1,6 +1,6 @@
 <div class="post-card">
     <mat-card>
-        <mat-card-header>
+        <mat-card-header class="clickable" [routerLink]="['/user-profile']" [queryParams]="{id: post.author.id}">
             <div mat-card-avatar class="header-image"></div>
             <mat-card-title>{{post.author.firstName}} {{post.author.lastName}}</mat-card-title>
             <mat-card-subtitle>{{post.author.email}}</mat-card-subtitle>
