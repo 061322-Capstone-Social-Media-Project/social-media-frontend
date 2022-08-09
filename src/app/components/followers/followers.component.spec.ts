@@ -75,4 +75,24 @@ describe('FollowersComponent', () => {
     component.getNext();
     expect(component.prev).toEqual(expectedPrev);
   });
+  
+  it('Should return first if statement in getPrev when offsetBy != 0 and offset == 10', () => {
+    component.offsetBy = 20;
+    let expectedNext = `${environment.baseUrl}/followers?limit=10`;
+
+    spyOn(component, 'getPrev').and.callThrough();
+    component.getPrev();
+    expect(component.prev).toEqual(expectedNext);
+  })
+
+  it('Should not return first if statement in getPrev when offsetBy != 0 and offset >= 10', () => {
+    component.offsetBy = 30;
+    let expectedNext = `${environment.baseUrl}/followers?offset=20&limit=10`;
+
+    spyOn(component, 'getPrev').and.callThrough();
+    component.getPrev();
+    expect(component.prev).toEqual(expectedNext);
+  })
+
+
 });
