@@ -6,7 +6,6 @@ import { FollowerService} from './follower.service';
 import User from '../models/User';
 import { AuthService } from './auth.service';
 import { Observable, tap } from 'rxjs';
-import { HttpClient, HttpRequest } from '@angular/common/http';
 
 describe('FollowerService', () => {
   let service: FollowerService;
@@ -146,12 +145,13 @@ describe('FollowerService', () => {
     done();
   });
 
+  //does not work right now. still is calling a get request instead of post
   it('Should send a http post request for addFollowing', (done) =>{
 
-    //spyOn(service, 'addFollowing');
+    spyOn(service, 'addFollowing');
     authService.currentUser = user;
     service.addFollowing(user.id);
-    const postFollowingReq = httpTestingController.expectOne(`${service.followingUrl}`);
+    const postFollowingReq = httpTestingController.expectOne("POST",`${service.followingUrl}`);
     expect(postFollowingReq.request.method).toBe("POST");
     postFollowingReq.flush({});
     done();
