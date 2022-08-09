@@ -46,4 +46,8 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['update-user']);
   }
 
+  toUserProfilePicture(){
+    this.router.navigate(['user-profile-picture']);
+  }
+
 }

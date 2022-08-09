@@ -5,6 +5,7 @@ import { PostFeedPageComponent } from './components/post-feed-page/post-feed-pag
 import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { UserProfilePictureComponent } from './components/user-profile-picture/user-profile-picture.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "post-feed", component: PostFeedPageComponent},
   { path: "user-profile", component: UserProfileComponent},
-  {path: "update-user", component: UserUpdateComponent}
+  {path: "update-user", component: UserUpdateComponent},
+  {path: "user-profile-picture", component: UserProfilePictureComponent}
 ];
 
 @NgModule({
