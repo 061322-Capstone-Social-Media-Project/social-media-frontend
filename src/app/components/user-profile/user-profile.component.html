@@ -11,7 +11,7 @@
           <p class="text-muted mb-4">{{user.location}}</p>
           <div class="d-flex justify-content-center mb-2">
             <!-- If viewing other profile -->
-            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id">Follow</button>
+            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="following ? unfollow() : follow()">{{following ? 'Unfollow' : 'Follow'}}</button>
             <!-- If viewing own profile -->
             <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
             <span id="buttonSpreader"></span>

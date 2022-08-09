@@ -12,13 +12,16 @@ export class AuthService {
   authUrl: string = `${environment.baseUrl}/auth`;
   currentUser: User
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}') as User;
+  }
 
   login(email: string, password: string): Observable<any> {
     const payload = {email:email, password:password};
     const res = this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers, withCredentials: environment.withCredentials});
     res.subscribe((data) => {
-      this.currentUser = data
+      localStorage.setItem('currentUser', JSON.stringify(data));
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}') as User;
     })
     return res;
   }

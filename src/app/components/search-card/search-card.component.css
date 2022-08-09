@@ -1,0 +1,16 @@
+#search-card {
+    display: flex;
+    align-items: center;
+    width: 388px;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid black;
+    box-shadow: 0 1px 6px black;
+}
+button {
+    width: 80px;
+    height: 30px;
+}
+p {
+    margin: 0 0 0 20px;
+}
