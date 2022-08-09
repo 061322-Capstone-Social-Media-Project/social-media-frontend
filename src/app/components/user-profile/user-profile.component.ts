@@ -5,6 +5,7 @@ import Post from 'src/app/models/Post';
 import { PostService } from 'src/app/services/post.service';
 import { UserProfileService } from 'src/app/services/user-profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HobbyService } from 'src/app/services/hobby.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,9 +18,12 @@ export class UserProfileComponent implements OnInit {
   loggedInUser: User;
   posts: Post[] = [];
   id: string;
+  hobby1:string;
+  hobby2:string;
+  hobby3:string;
 
   constructor(private userProfileService: UserProfileService, private authService: AuthService,
-     private postService: PostService, private router:Router, private route: ActivatedRoute) { 
+     private postService: PostService, private router:Router, private route: ActivatedRoute, private hobbyService: HobbyService) { 
       //console.log("the constructor is called");
       //this.user = authService.currentUser;
       this.ngOnInit();
@@ -42,6 +46,13 @@ export class UserProfileComponent implements OnInit {
         this.posts = response;
       }
     )
+    this.hobbyService.getAllHobbies(this.id).subscribe(
+      (response) => {
+        this.hobby1 = response.hobby1;
+        this.hobby2 = response.hobby2;
+        this.hobby3 = response.hobby3;
+      }
+    )
     // console.log("Current user: " + JSON.stringify(this.authService.currentUser));
   }
 
@@ -52,5 +63,4 @@ export class UserProfileComponent implements OnInit {
   toUserProfilePicture(){
     this.router.navigate(['user-profile-picture']);
   }
-
 }

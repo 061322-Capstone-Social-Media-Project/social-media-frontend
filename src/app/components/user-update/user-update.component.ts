@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
+import { HobbyService } from 'src/app/services/hobby.service';
 import { UserProfileService } from 'src/app/services/user-profile.service';
 
 @Component({
@@ -22,8 +23,12 @@ export class UserUpdateComponent implements OnInit {
   location:string;
   namePronunciation:string;
 
+  hobby1:string;
+  hobby2:string;
+  hobby3:string;
 
-  constructor(private authService: AuthService, private userService: UserProfileService, private router: Router) {
+
+  constructor(private authService: AuthService, private userService: UserProfileService, private router: Router, private hobbyService: HobbyService) {
     this.currentUser = authService.currentUser;
     this.id = this.currentUser.id;
     this.email = this.currentUser.email;
@@ -45,6 +50,9 @@ export class UserUpdateComponent implements OnInit {
       this.location,this.namePronunciation,this.professionalUrl, this.id);
 
       //this.router.navigate(['user-profile', {id:this.id}]); 
+  }
 
+  updateUserHobbies(){
+    this.hobbyService.updateUserHobbies(this.hobby1,this.hobby2,this.hobby3);
   }
 }
