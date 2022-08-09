@@ -9,16 +9,16 @@ import User from 'src/app/models/User';
 })
 export class FollowerCardComponent implements OnInit {
 
+  @Input() view: string;
   @Input() user: User;
   @Output() callParent = new EventEmitter();
-  userId: number;
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  unfollow(id: number) {
-    this.userId = id;
-    this.callParent.emit(this.userId);
+  unfollow() {
+    this.callParent.emit(this.user.id);
   }
 }
