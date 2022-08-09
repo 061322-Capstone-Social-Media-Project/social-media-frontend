@@ -26,6 +26,7 @@ export class UserUpdateComponent implements OnInit {
   hobby1:string;
   hobby2:string;
   hobby3:string;
+  hobbyID: any;
 
 
   constructor(private authService: AuthService, private userService: UserProfileService, private router: Router, private hobbyService: HobbyService) {
@@ -39,9 +40,18 @@ export class UserUpdateComponent implements OnInit {
     this.professionalUrl = this.currentUser.professionalURL;
     this.location = this.currentUser.location;
     this.namePronunciation = this.currentUser.namePronunciation;
+    this.ngOnInit();
    }
 
   ngOnInit(): void {
+    this.hobbyService.getAllHobbies(this.id).subscribe(
+      (response) => {
+        this.hobby1 = response.hobby1;
+        this.hobby2 = response.hobby2;
+        this.hobby3 = response.hobby3;
+        this.hobbyID = response.id;
+      }
+    )
   }
 
 
@@ -49,10 +59,8 @@ export class UserUpdateComponent implements OnInit {
     this.userService.updateUser(this.email,this.password,this.firstName,this.lastName,this.username,
       this.location,this.namePronunciation,this.professionalUrl, this.id);
 
-      //this.router.navigate(['user-profile', {id:this.id}]); 
-  }
+    this.hobbyService.updateUserHobbies(this.hobby1,this.hobby2,this.hobby3,this.hobbyID);
 
-  updateUserHobbies(){
-    this.hobbyService.updateUserHobbies(this.hobby1,this.hobby2,this.hobby3);
+      //this.router.navigate(['user-profile', {id:this.id}]); 
   }
 }

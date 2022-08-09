@@ -20,12 +20,12 @@ export class HobbyService {
     return this.http.get<Hobby>(url, {params:queryParams});
   }
 
-  updateUserHobbies(hobby1:string,hobby2:string,hobby3:string){
-    console.log("updateUserHobbies");
-    console.log(hobby1);
-    console.log(hobby2);
-    console.log(hobby3);
-
-
+  updateUserHobbies(hobby1:string,hobby2:string,hobby3:string, id: any){
+      const payload = {hobby1:hobby1,hobby2:hobby2,hobby3:hobby3,id:id};
+      const url = `${environment.baseUrl}/hobby`;
+      this.http.put(url, payload,{headers: environment.headers}).subscribe(val=>{
+      console.log('updating:');
+      console.log(val);
+    });
   }
 }
