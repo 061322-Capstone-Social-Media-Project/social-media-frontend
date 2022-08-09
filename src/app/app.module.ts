@@ -17,6 +17,8 @@ import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FollowersComponent } from './components/followers/followers.component';
 import { FollowerCardComponent } from './components/follower-card/follower-card.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchCardComponent } from './components/search-card/search-card.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { FollowerCardComponent } from './components/follower-card/follower-card.
     UserInitialsPipe,
     FollowersComponent,
     FollowerCardComponent,
+    SearchComponent,
+    SearchCardComponent,
   ],
   imports: [
     BrowserModule,
