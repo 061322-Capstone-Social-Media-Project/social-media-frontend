@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import Post from 'src/app/models/Post';
@@ -12,7 +12,7 @@ import { FollowerService } from 'src/app/services/follower.service';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
 
   user: User;
   loggedInUser: User;
@@ -70,6 +70,10 @@ export class UserProfileComponent implements OnInit {
     console.log('executing unfollow')
     this.followService.removeFollowing(this.user.id).subscribe();
     this.ngOnInit();
+  }
+
+  ngOnDestroy() {
+    this.followService.user = this.user
   }
 
 }

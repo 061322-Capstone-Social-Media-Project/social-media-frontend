@@ -1,5 +1,5 @@
-<div [ngClass]="{'following' : view == 'Following', 'follower' : view == 'Followers'}">
+<div [ngClass]="{'following' : view == 'following' && principal, 'follower' : view == 'followers' || !principal}">
     <img src="http://picsum.photos/50/50" alt="Profile image" />
     <p>{{user.firstName}} {{user.lastName}}</p>
-    <button *ngIf="view == 'Following'" (click)="unfollow()">Unfollow</button>
+    <button *ngIf="view == 'following' && principal" (click)="unfollow()">Unfollow</button>
 </div>

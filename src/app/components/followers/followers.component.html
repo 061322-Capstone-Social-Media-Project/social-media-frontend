@@ -1,18 +1,21 @@
-<h1>{{view}}</h1>
+<h1>{{view | titlecase}}</h1>
 <button (click)="toggle()">Toggle</button>
 <div id="followers-container">
     <div class="pagination">
         <button (click)="getPrev()" [disabled]='prev == ""'>Prev</button>
-        <p>{{pageNumber}}</p>
+        <p *ngIf="count == 0">Nothing to display</p>
+        <p *ngIf="count <= 10">Showing {{count}} results</p>
+        <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of {{count}} </p>
         <button (click)="getNext()" [disabled]='next == ""'>Next</button>
     </div>
     <div>
-        <app-follower-card *ngFor="let u of users" [user]="u" [view]="view" (callParent)="getMsgFromChild($event)"></app-follower-card>
+        <app-follower-card *ngFor="let u of users" [user]="u" [view]="view" [principal]="user == principal" (callParent)="getMsgFromChild($event)"></app-follower-card>
     </div>
     <div class="pagination">
         <button [disabled]='prev == ""' (click)="getPrev()">Prev</button>
-        <p>{{pageNumber}}</p>
+        <p *ngIf="count == 0">Nothing to display</p>
+        <p *ngIf="count <= 10">Showing {{count}} results</p>
+        <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of {{count}} </p>
         <button [disabled]='next == ""' (click)="getNext()">Next</button>
     </div>
 </div>
-
