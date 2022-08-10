@@ -13,6 +13,24 @@ button {
     width: 400px;
     margin: 0 auto;
 }
+ul {
+    list-style: none;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0 auto;
+}
+.active {
+    color: black;
+    pointer-events: none;
+}
+.inactive {
+    color: lightgray;
+}
+.inactive:hover {
+    cursor: pointer;
+}
 h1 {
     text-align: center;
 }

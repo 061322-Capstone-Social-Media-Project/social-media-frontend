@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { FollowerService } from 'src/app/services/follower.service';
-import { UserProfileService } from 'src/app/services/user-profile.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -28,19 +26,21 @@ export class FollowersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.fs.user;
     this.principal = this.auth.currentUser;
-    if (!this.user) {
+    this.user = this.fs.user;
+    if (!this.user || this.user.id == this.principal.id) {
       this.user = this.principal;
     }
+    console.log('user')
+    console.log(this.user)
+    console.log('principal')
+    console.log(this.principal)
+    console.log(this.user == this.principal)
     this.fs.getUsers(`${environment.baseUrl}/${this.view}/user/${this.user.id}?limit=10`).subscribe((data: any) => {
-      console.warn(data)
       this.users = data;
     })
     this.fs.getCount(`${environment.baseUrl}/${this.view}/user/${this.user.id}/count`).subscribe((data: any) => {
-      console.warn(data)
       this.count = data.count
-      console.log(this.count)
     })
     if (this.count > 10) {
       this.next = `${environment.baseUrl}/${this.view}/user/${this.user.id}?offset=${this.offsetBy}&limit=10`
@@ -51,7 +51,6 @@ export class FollowersComponent implements OnInit {
 
   getMsgFromChild($event: number) {
     this.unFollowUserId = $event;
-    console.log(this.unFollowUserId);
 
     this.fs.removeFollowing(this.unFollowUserId).subscribe(response => {
       this.ngOnInit();

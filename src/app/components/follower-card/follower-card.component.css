@@ -18,6 +18,9 @@
     border: 1px solid black;
     box-shadow: 0 1px 6px black;
 }
+.following:hover, .follower:hover {
+    cursor: pointer;
+}
 button {
     width: 80px;
     height: 30px;
