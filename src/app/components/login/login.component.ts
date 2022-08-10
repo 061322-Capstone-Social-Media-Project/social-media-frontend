@@ -14,13 +14,13 @@ export class LoginComponent implements OnInit {
     email: new FormControl(''),
     password: new FormControl('')
   })
-  
+
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
-  
+
   onSubmit(e: any): void {
     e.preventDefault()
     this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
