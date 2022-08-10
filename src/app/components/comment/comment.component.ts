@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { PostComponent } from './../post/post.component';
 
 @Component({
   selector: 'app-comment',
@@ -18,7 +19,7 @@ export class CommentComponent implements OnInit {
   @Input('comment') inputComment: Post;
   replyToComment: boolean = false
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService, private postComponent: PostComponent) { }
 
   ngOnInit(): void {
   }
@@ -30,11 +31,12 @@ export class CommentComponent implements OnInit {
   submitReply = (e: any) => {
     e.preventDefault()
     let newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [])
-    this.postService.upsertPost({...this.inputComment, comments: [...this.inputComment.comments, newComment]})
+    this.postService.upsertPost({ ...this.inputComment, comments: [...this.inputComment.comments, newComment] })
       .subscribe(
         (response) => {
           this.inputComment = response
-          this.toggleReplyToComment()
+          this.toggleReplyToComment();
+          this.postComponent.getPost(this.postComponent.post.id);
         }
       )
   }
