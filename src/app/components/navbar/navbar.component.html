@@ -1,7 +1,14 @@
 <p>
-    <mat-toolbar>
-        <span [routerLink]="['/post-feed']">Revature Social Media</span>
+    <mat-toolbar style= "background-color: #474C55;">
+        <img src="/assets/images/logo-white-color.png" style="height: 2.5em; padding: .5em; ">
         <span class="spacer"></span>
-        <button mat-button (click)="logout();">Logout</button>
+        <div class="search-container">
+            
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><img src="/assets/images/Search_Icon.png" style="height: .9em; padding: 0em; "></button>
+            
+          </div>
+          <img src="/assets/images/3308948.png" style="height: 1.5em; padding: 1em; ">
+        <button mat-button (click)="logout();" style="color: #ffff;">Logout</button>
     </mat-toolbar>
 </p>

@@ -8,7 +8,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 100vh;
-  background: #e2e2e2;
+  background: #72A4C2;
 }
 .app-header {
   justify-content: space-between;
@@ -119,6 +119,8 @@ body {
 }
 
 .user-card {
+  background-color: #474C55;
+  color: #fff;
   width: 10em;
   text-align: center;
   margin: 1em;
@@ -170,3 +172,20 @@ body {
 .spacer {
   flex: 1 1 auto;
 }
+
+
+.mat-form-field{
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.primaryBtn{
+  background-color: #F26925;
+  color: #fff;
+}
+
+.secondaryBtn{
+  color: #F26925;
+}
+
+

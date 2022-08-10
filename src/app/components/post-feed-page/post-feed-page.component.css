@@ -1,0 +1,30 @@
+.gradient-custom-blog {
+    /* fallback for old browsers */
+    background: #ffffff;
+   
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to bottom right, #ffffff, #b9b9ba);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom right, #ffffff, #B9B9BA);
+}
+
+
+.button2{background-color: #fcb414; color: white;}
+.button3{background-color: #474c55; color: white;}
+
+.space {
+    width: 4px;
+    height: auto;
+    display: inline-block;
+  }
+
+  button{
+    width:80px;
+    height: 36px;
+    margin-top: 20px;
+  }
+
+  .secondaryBtn {
+    margin-right: 20px;
+  }
