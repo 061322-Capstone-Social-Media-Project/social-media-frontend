@@ -1,6 +1,6 @@
+import { notificationType } from "./notificationType";
 
-
-export class Notification {
+export class Notify {
 
 	 id: number
 	 notificationBody: string

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Notify } from 'src/app/models/notification';
+
+
 
 @Component({
   selector: 'app-notification',
@@ -10,7 +13,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class NotificationComponent implements OnInit {
 
-  notifications: Notification[];
+  notifications: Notify[];
+
 
   constructor(private ns: NotificationService, private as: AuthService) { }
 
