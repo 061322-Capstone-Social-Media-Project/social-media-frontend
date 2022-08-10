@@ -31,7 +31,7 @@ describe('FollowersComponent', () => {
     let expectedId: number = 1;
     let actualId: number = 0;
     spyOn(component, 'getMsgFromChild').and.callThrough();
-    let spyRemoveFollowing = spyOn(followerService, 'removeFollowing').and.stub();
+    const spyRemoveFollowing = spyOn(followerService, 'removeFollowing').and.stub();
     component.getMsgFromChild(expectedId);
 
     actualId = component.unFollowUserId;

@@ -2,6 +2,12 @@
     <mat-toolbar>
         <span [routerLink]="['/post-feed']" class="clickable">Revature Social Media</span>
         <span class="spacer"></span>
+        <span class="clickable">
+            <form id="form">
+                <input type="search" id="query" name="q" placeholder="Search"[(ngModel)]="searchParam">
+                <button type="submit" (click)="search()">Search</button>
+            </form>
+        </span>
         <button mat-button (click)="logout();">Logout</button>
     </mat-toolbar>
 </p>
