@@ -11,10 +11,10 @@ export class UserCardComponent implements OnInit {
 
   user: User = {} as User;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {this.ngOnInit();}
 
   ngOnInit(): void {
-    this.user = this.authService.currentUser
+    this.user = this.authService.currentUser;
   }
 
 }

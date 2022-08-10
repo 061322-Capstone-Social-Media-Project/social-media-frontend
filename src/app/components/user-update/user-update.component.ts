@@ -28,6 +28,7 @@ export class UserUpdateComponent implements OnInit {
   hobby3:string;
   hobbyID: any;
   isNullHobby: boolean;
+  profilePic: string;
 
 
   constructor(private authService: AuthService, private userService: UserProfileService, private router: Router, private hobbyService: HobbyService) {
@@ -41,6 +42,7 @@ export class UserUpdateComponent implements OnInit {
     this.professionalUrl = this.currentUser.professionalURL;
     this.location = this.currentUser.location;
     this.namePronunciation = this.currentUser.namePronunciation;
+    this.profilePic = this.currentUser.profilePic;
     this.ngOnInit();
    }
 
@@ -62,13 +64,12 @@ export class UserUpdateComponent implements OnInit {
 
   updateUser(){
     this.userService.updateUser(this.email,this.password,this.firstName,this.lastName,this.username,
-      this.location,this.namePronunciation,this.professionalUrl, this.id);
+      this.location, this.namePronunciation, this.professionalUrl, this.id, this.profilePic);
     if(this.isNullHobby === true){
       console.log(this.id);
       this.hobbyService.createHobby(this.hobby1,this.hobby2,this.hobby3,this.id);
     }else{
     this.hobbyService.updateUserHobbies(this.hobby1,this.hobby2,this.hobby3,this.hobbyID);
     }
-      //this.router.navigate(['user-profile', {id:this.id}]); 
   }
 }

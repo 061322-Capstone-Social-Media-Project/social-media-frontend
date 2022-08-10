@@ -1,5 +1,6 @@
 <mat-card class="user-card clickable" [routerLink]="['/user-profile']" [queryParams]="{id: user.id}">
-    <div class="user-circle"></div>
+    <div class="user-circle" style="background-image: url({{user.profilePic}})">
+    </div>
     <mat-divider></mat-divider>
     <p style="padding-top: 1em; font-weight: bold;">
         {{user.firstName}} {{user.lastName}}

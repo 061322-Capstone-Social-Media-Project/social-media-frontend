@@ -19,10 +19,10 @@ export class UserProfileService {
   }
 
   updateUser(email:string,password:string,firstName:string,lastName:string,
-    username:string, location:string, namePronunciation: string, professionalURL: string, id: any) {
+    username:string, location:string, namePronunciation: string, professionalURL: string, id: any, profilePic: string) {
       //console.log("updateUser id:" + id);
       const payload = {firstName:firstName,lastName:lastName,email: email, password:password, location:location,
-        username:username,professionalURL:professionalURL,namePronunciation:namePronunciation,id:this.currentUser.id};
+        username:username,professionalURL:professionalURL,namePronunciation:namePronunciation,id:this.currentUser.id,profilePic:profilePic};
         //console.log('current user'+ this.currentUser);
       this.http.put(this.updateURL, payload,{headers: environment.headers}).subscribe(val=>{
         console.log('updating:');

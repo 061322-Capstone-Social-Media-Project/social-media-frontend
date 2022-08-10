@@ -14,8 +14,6 @@
             <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="following ? unfollow() : follow()">{{following ? 'Unfollow' : 'Follow'}}</button>
             <!-- If viewing own profile -->
             <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
-            <span id="buttonSpreader"></span>
-            <button type="button" class="btn btn-primary" (click) = "toUserProfilePicture()" *ngIf="user.id === loggedInUser.id">Edit Picture</button>
           </div>
         </div>
       </div>
