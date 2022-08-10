@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DebugElement, OnInit } from '@angular/core';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserProfileService } from 'src/app/services/user-profile.service';
 
 @Component({
   selector: 'app-user-card',
@@ -11,10 +12,15 @@ export class UserCardComponent implements OnInit {
 
   user: User = {} as User;
 
-  constructor(private authService: AuthService) {this.ngOnInit();}
+  constructor(private authService: AuthService, private us: UserProfileService) {this.ngOnInit(); }
 
   ngOnInit(): void {
-    this.user = this.authService.currentUser;
+    // sessionStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+    this.us.getUserById(this.authService.currentUser.id.toString()).subscribe(
+      (response) => {
+        this.user = response;
+      }
+    );
   }
 
 }
