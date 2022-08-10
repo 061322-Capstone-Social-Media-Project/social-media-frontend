@@ -53,9 +53,17 @@ export class UserProfileComponent implements OnInit {
     )
     this.hobbyService.getAllHobbies(this.id).subscribe(
       (response) => {
-        this.hobby1 = response.hobby1;
-        this.hobby2 = response.hobby2;
-        this.hobby3 = response.hobby3;
+        if(response !== null){
+          if(response.hobby1 !== null){
+          this.hobby1 = response.hobby1;
+          }
+          if(response.hobby2 !== null){
+          this.hobby2 = response.hobby2;
+          }
+          if(response.hobby3 !== null){
+          this.hobby3 = response.hobby3;
+          }
+        }
       }
     )
     // console.log("Current user: " + JSON.stringify(this.authService.currentUser));

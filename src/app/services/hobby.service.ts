@@ -28,4 +28,14 @@ export class HobbyService {
       console.log(val);
     });
   }
+
+  createHobby(hobby1: string, hobby2:string, hobby3:string, userId: any){
+    console.log(userId);
+    const payload = {hobby1:hobby1,hobby2:hobby2,hobby3:hobby3,userId:userId};
+    const url = `${environment.baseUrl}/hobby`;
+    this.http.post(url, payload,{headers: environment.headers}).subscribe(val=>{
+      console.log('creating:');
+      console.log(val);
+    });
+  }
 }
