@@ -25,6 +25,10 @@ button {
     width: 80px;
     height: 30px;
 }
+img {
+    max-height: 50px;
+    width: auto;
+}
 .follower p {
     margin: 0 0 0 20px;
 }

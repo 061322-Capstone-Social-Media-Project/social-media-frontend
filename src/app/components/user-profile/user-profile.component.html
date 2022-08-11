@@ -10,7 +10,7 @@
           <p class="text-muted mb-4">{{user.location}}</p>
           <div class="d-flex justify-content-center mb-2">
             <!-- If viewing other profile -->
-            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="following ? unfollow() : follow()">{{following ? 'Unfollow' : 'Follow'}}</button>
+            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="isFollowing ? unfollow() : follow()">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
             <!-- If viewing own profile -->
             <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
           </div>
@@ -47,8 +47,8 @@
           <div class="card mb-4 mb-md-0">
             <div class="card-body">
               <button [routerLink]="['/followers']" [state]="user">Followers</button>
-              <p class="mb-4">Following: {{5}} users</p>
-              <p class="mb-4">Followers: {{5}} users</p>
+              <p class="mb-4">Following: {{followingCount}} users</p>
+              <p class="mb-4">Followers: {{followerCount}} users</p>
             </div>
           </div>
         </div>
