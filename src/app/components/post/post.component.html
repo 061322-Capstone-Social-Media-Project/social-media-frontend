@@ -5,7 +5,7 @@
             <mat-card-title>{{post.author.firstName}} {{post.author.lastName}}</mat-card-title>
             <mat-card-subtitle>{{post.author.email}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
+        <img class="mci" mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
         <mat-card-content>
             <p>
                 {{post.text}}
