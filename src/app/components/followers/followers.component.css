@@ -5,6 +5,13 @@
     justify-content: space-between;
     margin: 0 auto;
 }
+.nothing {
+    width: 300px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+}
 button {
     width: 60px;
     height: 30px;

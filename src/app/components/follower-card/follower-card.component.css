@@ -18,16 +18,20 @@
     border: 1px solid black;
     box-shadow: 0 1px 6px black;
 }
-.following:hover, .follower:hover {
+/* .following:hover, .follower:hover {
     cursor: pointer;
-}
+} */
 button {
     width: 80px;
     height: 30px;
 }
 img {
-    max-height: 50px;
-    width: auto;
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+img:hover {
+    cursor: pointer;
 }
 .follower p {
     margin: 0 0 0 20px;

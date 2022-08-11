@@ -7,13 +7,17 @@
     border: 1px solid black;
     box-shadow: 0 1px 6px black;
 }
+#search-card:hover {
+    cursor: pointer;
+}
 button {
     width: 80px;
     height: 30px;
 }
 img {
-    max-height: 50px;
-    width: auto;
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
 }
 p {
     margin: 0 0 0 20px;

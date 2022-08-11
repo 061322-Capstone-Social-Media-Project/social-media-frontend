@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import User from 'src/app/models/User';
+import { FollowerService } from 'src/app/services/follower.service';
 
 @Component({
   selector: 'app-search-card',
@@ -8,10 +9,10 @@ import User from 'src/app/models/User';
 })
 export class SearchCardComponent implements OnInit {
 
+  
   @Input() user: User;
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

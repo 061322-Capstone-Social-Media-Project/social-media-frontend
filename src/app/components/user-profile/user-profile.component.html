@@ -45,10 +45,11 @@
         </div>
         <div class="col-md-4">
           <div class="card mb-4 mb-md-0">
-            <div class="card-body">
-              <button [routerLink]="['/followers']" [state]="user">Followers</button>
-              <p class="mb-4">Following: {{followingCount}} users</p>
-              <p class="mb-4">Followers: {{followerCount}} users</p>
+            <div id="follow-card" class="card-body" [routerLink]="['/followers']" [state]="user">
+              <h3>Followers</h3>
+              <p class="mb-4" *ngIf="followingCount > 0">Following: {{followingCount}} user{{followingCount > 1 ? 's' : ''}}</p>
+              <p class="mb-4" *ngIf="followerCount > 0">Followers: {{followerCount}} user{{followerCount > 1 ? 's' : ''}}</p>
+              <p class="mb-4" *ngIf="followerCount == 0 && followingCount ==0">Nothing to show</p>
             </div>
           </div>
         </div>
