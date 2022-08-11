@@ -1,32 +1,30 @@
-.following {
+div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    width: 388px;
+    width: 400px;
     margin: 10px 0;
     padding: 5px; 
-    border: 1px solid black;
-    box-shadow: 0 1px 6px black;
+    background-color: #fff;
+    border-radius: 5px;
 }
-.follower {
-    display: flex;
-    align-items: center;
-    width: 388px;
-    margin: 10px 0;
-    padding: 5px;
-    border: 1px solid black;
-    box-shadow: 0 1px 6px black;
+.following {
+    flex-direction: row;
+    justify-content: space-between;
 }
+
 .following:hover, .follower:hover {
     cursor: pointer;
 }
 button {
-    width: 80px;
-    height: 30px;
+    width: 66px;
+    height: 36px;
+    background-color: #fff;
+    color: #f26925;
+    border: 1px solid #f26925;
+    padding: 0;
 }
 img {
-    max-height: 50px;
+    height: 50px;
     width: auto;
 }
 .follower p {
@@ -34,4 +32,13 @@ img {
 }
 p {
     margin: 0;
+    font-size: 16px;
+}
+button:hover {
+    background-color: #f26925;
+    color: #fff;
+    transition: .2s ease-in-out;
+}
+div:hover {
+    transform: scale(1.02);
 }

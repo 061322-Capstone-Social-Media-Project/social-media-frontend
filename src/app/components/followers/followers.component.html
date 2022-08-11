@@ -1,27 +1,26 @@
 <ul>
-    <li><h1>{{user == principal ? "My" : user.firstName + "'s"}}</h1></li>
-    <li (click)="view = 'following'; ngOnInit()" [ngClass]="{'active' : view == 'following', 'inactive' : view == 'followers'}"><h1>Following</h1></li>
-    <li (click)="view = 'followers'; ngOnInit()" [ngClass]="{'inactive' : view == 'following', 'active' : view == 'followers'}"><h1>Followers</h1></li>
+    <li (click)="view = 'following'; ngOnInit()" [ngClass]="{'active' : view == 'following', 'inactive' : view == 'followers'}"><h1>{{user == principal ? "I'm" : user.firstName + "'s"}} Following</h1></li>
+    <li (click)="view = 'followers'; ngOnInit()" [ngClass]="{'inactive' : view == 'following', 'active' : view == 'followers'}"><h1>{{user == principal ? "My" : user.firstName + "'s"}} Followers</h1></li>
 </ul>
 <div id="followers-container">
     <div class="pagination">
-        <button (click)="getPrev()" [disabled]='prev == ""'>Prev</button>
+        <button (click)="getPrev()" [disabled]='prev == ""' mat-button>Prev</button>
         <p *ngIf="count == 0">Nothing to display</p>
-        <p *ngIf="count <= 10">Showing {{count}} results</p>
+        <p *ngIf="count > 0 && count <= 10">Showing {{count}} results</p>
         <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of
             {{count}} </p>
-        <button (click)="getNext()" [disabled]='next == ""'>Next</button>
+        <button (click)="getNext()" [disabled]='next == ""' mat-button>Next</button>
     </div>
     <div>
         <app-follower-card *ngFor="let u of users" [user]="u" [view]="view" [principal]="user == principal"
             (callParent)="getMsgFromChild($event)"></app-follower-card>
     </div>
     <div class="pagination">
-        <button [disabled]='prev == ""' (click)="getPrev()">Prev</button>
+        <button [disabled]='prev == ""' (click)="getPrev()" mat-button>Prev</button>
         <p *ngIf="count == 0">Nothing to display</p>
-        <p *ngIf="count <= 10">Showing {{count}} results</p>
+        <p *ngIf="count > 0 && count <= 10">Showing {{count}} results</p>
         <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of
             {{count}} </p>
-        <button [disabled]='next == ""' (click)="getNext()">Next</button>
+        <button [disabled]='next == ""' (click)="getNext()" mat-button>Next</button>
     </div>
 </div>
