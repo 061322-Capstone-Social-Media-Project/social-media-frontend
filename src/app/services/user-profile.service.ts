@@ -1,6 +1,6 @@
 
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import User from '../models/User';
 import { AuthService } from './auth.service';
@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class UserProfileService {
 
+  private searchParam: string;
+  searchEvent = new EventEmitter();
   updateURL : string = `${environment.baseUrl}/update`;
   currentUser: User;
 
@@ -36,5 +38,19 @@ export class UserProfileService {
     const url = `${environment.baseUrl}/user-profile`;
     let queryParams = new HttpParams().append("id", id);
     return this.http.get<User>(url, {params:queryParams});
+  }
+
+  public setSearchParam(search:string){
+    this.searchParam = search;
+    this.searchEvent.emit(this.searchParam);
+  }
+
+  public getSearchParam(){
+    return this.searchParam;
+  }
+  
+  public findUsers(searchParam: string): Observable<User[]>{
+    let queryParams = new HttpParams().append("user", searchParam);
+    return this.http.get<User[]>(`${environment.baseUrl}/search`, {params:queryParams}) 
   }
 }
