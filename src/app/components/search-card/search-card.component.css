@@ -1,11 +1,11 @@
 #search-card {
     display: flex;
     align-items: center;
-    width: 388px;
+    width: 400px;
     margin: 10px 0;
     padding: 5px;
-    border: 1px solid black;
-    box-shadow: 0 1px 6px black;
+    background-color: #fff;
+    border-radius: 5px;
 }
 #search-card:hover {
     cursor: pointer;
