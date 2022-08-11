@@ -4,7 +4,7 @@
 </ul>
     <div id="followers-container">
         <div class="pagination" *ngIf="count > 0; else checkCount">
-            <button (click)="getPrev()" [disabled]='prev == ""'>Prev</button>
+            <button (click)="getPrev()" [disabled]='prev == ""' mat-button>Prev</button>
             <p *ngIf="count == 0">Nothing to display</p>
             <p *ngIf="count <= 10 && count > 0">Showing {{count}} results</p>
         <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of
@@ -16,7 +16,7 @@
             (callParent)="getMsgFromChild($event)"></app-follower-card>
     </div>
     <div class="pagination" *ngIf="count > 0">
-        <button [disabled]='prev == ""' (click)="getPrev()">Prev</button>
+        <button [disabled]='prev == ""' (click)="getPrev()" mat-button>Prev</button>
         <p *ngIf="count <= 10 && count > 0">Showing {{count}} results</p>
         <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of
             {{count}} </p>
