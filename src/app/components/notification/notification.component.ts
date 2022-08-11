@@ -29,8 +29,8 @@ export class NotificationComponent implements OnInit {
         console.log(this.notifications)
       })
     ).subscribe()
-
   }
+  
   deleteNotification(id: number) {
     this.ns.deleteNotificationById(id).subscribe((_) => this.ngOnInit());
   }
