@@ -3,8 +3,6 @@ import { tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Notify } from 'src/app/models/notification';
-import { HostListener } from '@angular/core';
-
 
 
 @Component({
@@ -18,30 +16,22 @@ export class NotificationComponent implements OnInit {
 
 
   constructor(private ns: NotificationService, private as: AuthService) { }
-  
-  
+
+
   ngOnInit(): void {
-   this.getNotifications()
-  
-    
+    this.getNotifications()
   }
 
-  getNotifications(){
+  getNotifications() {
     this.ns.getNotifications(this.as.currentUser.id).pipe(
-      tap((data)=>{this.notifications = data
-        console.log(this.notifications)})
+      tap((data) => {
+        this.notifications = data
+        console.log(this.notifications)
+      })
     ).subscribe()
 
   }
-  deleteNotification(id: number){
-    this.ns.deleteNotificationById(id).subscribe((_) =>this.ngOnInit());
-    
-    
+  deleteNotification(id: number) {
+    this.ns.deleteNotificationById(id).subscribe((_) => this.ngOnInit());
   }
-
-  updateNotification(){
-    this.ngOnInit();
-
-  }
-
 }
