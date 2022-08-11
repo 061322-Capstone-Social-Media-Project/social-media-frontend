@@ -3,26 +3,21 @@ import { tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Notify } from 'src/app/models/notification';
-import { HostListener } from '@angular/core';
-
-
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css']
+  selector: 'app-notification-view-all',
+  templateUrl: './notification-view-all.component.html',
+  styleUrls: ['./notification-view-all.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationViewAllComponent implements OnInit {
 
   notifications: Notify[];
 
 
   constructor(private ns: NotificationService, private as: AuthService) { }
-  
-  
+
   ngOnInit(): void {
-   this.getNotifications()
-  
+    this.getNotifications()
     
   }
 
@@ -31,16 +26,6 @@ export class NotificationComponent implements OnInit {
       tap((data)=>{this.notifications = data
         console.log(this.notifications)})
     ).subscribe()
-
-  }
-  deleteNotification(id: number){
-    this.ns.deleteNotificationById(id).subscribe((_) =>this.ngOnInit());
-    
-    
-  }
-
-  updateNotification(){
-    this.ngOnInit();
 
   }
 

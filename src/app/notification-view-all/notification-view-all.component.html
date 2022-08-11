@@ -1,0 +1,11 @@
+<div class="container">
+    <ul class="list-unstyled">
+        <li *ngFor="let notification of notifications?.reverse()" class="mt-3">
+            <div>
+                {{notification.notificationBody}} {{notification.timeStamp | date:'MM/dd/yy h:mm:ss a'}}
+                <button>Delete</button>
+            </div>
+        </li>
+
+    </ul>
+</div>

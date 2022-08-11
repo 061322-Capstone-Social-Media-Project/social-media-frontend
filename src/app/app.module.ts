@@ -17,6 +17,7 @@ import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LikesComponent } from './components/likes/likes.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationViewAllComponent } from './notification-view-all/notification-view-all.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NotificationComponent } from './components/notification/notification.co
     UserInitialsPipe,
     LikesComponent,
     NotificationComponent,
+    NotificationViewAllComponent,
   ],
   imports: [
     BrowserModule,
