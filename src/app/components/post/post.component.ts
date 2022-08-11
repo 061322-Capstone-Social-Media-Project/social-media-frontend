@@ -3,22 +3,22 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
-
+import { UserProfileService } from 'src/app/services/user-profile.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
+  
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
 
   @Input('post') post: Post
-  replyToPost: boolean = false
+  replyToPost: boolean = false;
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService, private userService: UserProfileService) { }
 
   ngOnInit(): void {
   }
