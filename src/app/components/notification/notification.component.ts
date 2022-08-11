@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { tap } from "rxjs";
-import { AuthService } from "src/app/services/auth.service";
-import { NotificationService } from "src/app/services/notification.service";
-import { Notify } from "src/app/models/notification";
+import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { Notify } from 'src/app/models/notification';
 
 @Component({
-  selector: "app-notification",
-  templateUrl: "./notification.component.html",
-  styleUrls: ["./notification.component.css"],
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.css'],
 })
 export class NotificationComponent implements OnInit {
   notifications: Notify[];
@@ -22,7 +22,7 @@ export class NotificationComponent implements OnInit {
     this.ns
       .getNotifications(this.as.currentUser.id)
       .pipe(
-        tap((data) => {
+        tap(data => {
           this.notifications = data;
           console.log(this.notifications);
         })
@@ -31,6 +31,6 @@ export class NotificationComponent implements OnInit {
   }
 
   deleteNotification(id: number) {
-    this.ns.deleteNotificationById(id).subscribe((_) => this.ngOnInit());
+    this.ns.deleteNotificationById(id).subscribe(_ => this.ngOnInit());
   }
 }
