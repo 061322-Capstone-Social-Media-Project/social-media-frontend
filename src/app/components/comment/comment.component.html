@@ -1,5 +1,5 @@
 <p>
-    {{inputComment.text}}
+    {{inputComment.author.firstName}}&nbsp;{{inputComment.author.lastName}}: {{inputComment.text}}
 </p>
 <div class="comment-reply" align="right">
     <div class="comment-reply-text" (click)="toggleReplyToComment()">

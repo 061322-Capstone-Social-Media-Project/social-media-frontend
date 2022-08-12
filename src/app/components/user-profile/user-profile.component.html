@@ -1,6 +1,6 @@
 <div class="container py-5">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4 user-card-item">
       <div class="card mb-4">
         <div class="card-body text-center">
           <img src="{{user.profilePic}}" alt="avatar"
@@ -38,12 +38,12 @@
     </div>
     <div class="col-lg-8">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 upf">
                 <div class = "w-100" id="post-feed" *ngFor="let post of posts">
                   <app-post [post]="post" *ngIf="user.id === post.author.id"></app-post>
               </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 follow-info">
           <div class="card mb-4 mb-md-0">
             <div id="follow-card" class="card-body" [routerLink]="['/followers']" [state]="user">
               <h3>Followers</h3>

@@ -23,7 +23,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { FormsModule } from '@angular/forms';
 import { UserProfilePictureComponent } from './components/user-profile-picture/user-profile-picture.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { LikesComponent } from './components/likes/likes.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { LikesComponent } from './components/likes/likes.component';
     UserCardComponent,
     NavbarComponent,
     UserInitialsPipe,
+    LikesComponent,
+    NotificationComponent,
     FollowersComponent,
     FollowerCardComponent,
     SearchComponent,
@@ -43,7 +47,7 @@ import { LikesComponent } from './components/likes/likes.component';
     UserProfileComponent,
     UserUpdateComponent,
     UserProfilePictureComponent,
-    LikesComponent
+    ScrollToTopComponent
   ],
   imports: [
     BrowserModule,

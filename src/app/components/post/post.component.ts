@@ -30,11 +30,20 @@ export class PostComponent implements OnInit {
   submitReply = (e: any) => {
     e.preventDefault()
     let newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [])
-    this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
+    this.postService.upsertPost({ ...this.post, comments: [...this.post.comments, newComment] })
       .subscribe(
         (response) => {
           this.post = response
           this.toggleReplyToPost()
+        }
+      )
+  }
+
+  getPost(id: number) {
+    this.postService.getPost(id)
+      .subscribe(
+        (response) => {
+          this.post = response;
         }
       )
   }

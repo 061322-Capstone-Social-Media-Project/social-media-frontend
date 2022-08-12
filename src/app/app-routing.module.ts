@@ -8,17 +8,20 @@ import { SearchComponent } from './components/search/search.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { UserProfilePictureComponent } from './components/user-profile-picture/user-profile-picture.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+
 
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "post-feed", component: PostFeedPageComponent},
-  { path: "followers", component: FollowersComponent},
-  { path: "search", component: SearchComponent},
-  { path: "user-profile", component: UserProfileComponent},
-  {path: "update-user", component: UserUpdateComponent},
-  {path: "user-profile-picture", component: UserProfilePictureComponent}
+  { path: "post-feed", component: PostFeedPageComponent },
+  { path: "followers", component: FollowersComponent },
+  { path: "search", component: SearchComponent },
+  { path: "user-profile", component: UserProfileComponent },
+  { path: "update-user", component: UserUpdateComponent },
+  { path: "user-profile-picture", component: UserProfilePictureComponent },
+  { path: "scroll-to-top", component: ScrollToTopComponent }
 ];
 
 @NgModule({
