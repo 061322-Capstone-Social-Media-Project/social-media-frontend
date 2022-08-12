@@ -27,3 +27,6 @@ mat-form-field {
 #buttonSpreader {
     margin: .5em;
 }
+#follow-card:hover {
+    cursor: pointer;
+}

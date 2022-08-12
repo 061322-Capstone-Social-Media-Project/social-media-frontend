@@ -10,10 +10,11 @@ import User from 'src/app/models/User';
 export class FollowerCardComponent implements OnInit {
 
   @Input() view: string;
+  @Input() principal: boolean;
   @Input() user: User;
   @Output() callParent = new EventEmitter();
   
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }

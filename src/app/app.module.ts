@@ -24,6 +24,7 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
 import { FormsModule } from '@angular/forms';
 import { UserProfilePictureComponent } from './components/user-profile-picture/user-profile-picture.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { LikesComponent } from './components/likes/likes.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
     UserProfileComponent,
     UserUpdateComponent,
     UserProfilePictureComponent,
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    LikesComponent
   ],
   imports: [
     BrowserModule,

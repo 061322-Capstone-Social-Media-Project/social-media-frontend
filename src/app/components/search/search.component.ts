@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import User from 'src/app/models/User';
+import { UserProfileService } from 'src/app/services/user-profile.service';
 
 @Component({
   selector: 'app-search',
@@ -8,19 +10,28 @@ import User from 'src/app/models/User';
 })
 export class SearchComponent implements OnInit {
 
-  users: User[] = [];
-  followUserId: number;
 
-  constructor() { 
-    // this.users.push(new User(2, "ah@gmail.com", "Adam", "Harbeck"));
-    // this.users.push(new User(3, "cp@gmail.com", "Calvin", "Post"));
-    // this.users.push(new User(4, "tr@gmail.com", "Trey", "Ratcliff"));
-    // this.users.push(new User(5, "lm@gmail.com", "Lane", "McSpadden"));
-    // this.users.push(new User(6, "sz@gmail.com", "Shouchuang", "Zhu"));
-    // this.users.push(new User(7, "be@gmail.com", "Bryan", "Epperson"));
+  searchParam: string;
+  users: User[] = [];
+
+  constructor(private us: UserProfileService) { 
   }
 
   ngOnInit(): void {
+    this.us.searchEvent.subscribe({
+      next: (data: any) => {this.searchParam = data,
+        this.search()
+      }
+    });
+    this.searchParam = this.us.getSearchParam();
+    this.search();
   }
 
+
+  search(){
+    this.us.findUsers(this.searchParam).subscribe(data =>
+      {
+        this.users = data;
+      });
+  }
 }

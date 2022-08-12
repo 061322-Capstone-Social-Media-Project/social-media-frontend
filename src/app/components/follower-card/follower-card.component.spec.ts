@@ -18,8 +18,14 @@ describe('FollowerCardComponent', () => {
       providers: [{ provide: User, useValue: {
         id: 1,
         email: 'tester@gmail.com',
+        password: 'secret',
         firstName: 'test',
-        lastName: 'user'
+        lastName: 'user',
+        profilePic: 'none',
+        username: 'tester',
+        professionalURL: 'none',
+        location: 'testville',
+        namePronunciation: 'test'
     }}]
     })
     .compileComponents();
@@ -35,10 +41,22 @@ describe('FollowerCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  //Does not like the user given into the component. It keeps coming out undefined for the emit.
+  //Might just have to approach this test a different way.
   it('Should emit a user', () => {
-    component.user = user;
+    component.user = {
+      id: 1,
+      email: 'tester@gmail.com',
+      password: 'secret',
+      firstName: 'test',
+      lastName: 'user',
+      profilePic: 'none',
+      username: 'tester',
+      professionalURL: 'none',
+      location: 'testville',
+      namePronunciation: 'test'
+    };
     const spy = spyOn(component, 'callParent');
-    // spyOn(component, 'unfollow').and.callThrough();
     component.unfollow();
     expect(spy).toHaveBeenCalled();
   });

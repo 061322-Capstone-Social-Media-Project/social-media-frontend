@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <div class="container py-5">
   <div class="row">
     <div class="col-lg-4 user-card-item">
@@ -11,7 +10,7 @@
           <p class="text-muted mb-4">{{user.location}}</p>
           <div class="d-flex justify-content-center mb-2">
             <!-- If viewing other profile -->
-            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="following ? unfollow() : follow()">{{following ? 'Unfollow' : 'Follow'}}</button>
+            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="isFollowing ? unfollow() : follow()">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
             <!-- If viewing own profile -->
             <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
           </div>
@@ -46,9 +45,11 @@
         </div>
         <div class="col-md-4 follow-info">
           <div class="card mb-4 mb-md-0">
-            <div class="card-body">
-              <p class="mb-4">Following</p>
-              <p class="mb-4">Followers</p>
+            <div id="follow-card" class="card-body" [routerLink]="['/followers']" [state]="user">
+              <h3>Followers</h3>
+              <p class="mb-4" *ngIf="followingCount > 0">Following: {{followingCount}} user{{followingCount > 1 ? 's' : ''}}</p>
+              <p class="mb-4" *ngIf="followerCount > 0">Followers: {{followerCount}} user{{followerCount > 1 ? 's' : ''}}</p>
+              <p class="mb-4" *ngIf="followerCount == 0 && followingCount ==0">Nothing to show</p>
             </div>
           </div>
         </div>

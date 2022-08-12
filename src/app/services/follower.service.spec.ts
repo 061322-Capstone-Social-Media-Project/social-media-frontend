@@ -1,4 +1,4 @@
-import { TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
 
@@ -6,6 +6,7 @@ import { FollowerService} from './follower.service';
 import User from '../models/User';
 import { AuthService } from './auth.service';
 import { Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 describe('FollowerService', () => {
   let service: FollowerService;
@@ -34,31 +35,31 @@ describe('FollowerService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  // it("Get Current User", (done) => {
-   
-  //   //might need to change authService from the real one to a mock class
-  //   //if it messes with any production things.
-  //   authService.currentUser = user;
-  //   spyOn(service, 'getCurrentUser').and.returnValue(authService.currentUser);
-  //   let actualUser = service.getCurrentUser();
-  //   expect(actualUser).toEqual(user);
-  //   done();
-  // });
     
-
-  it('Should get followers', (done) => {
+  it('Should get users', (done) => {
     const expectedfollowers: User[] =[{
       id: 1,
       email: 'tester@gmail.com',
+      password: 'secret',
       firstName: 'test',
-      lastName: 'user'
+      lastName: 'user',
+      profilePic: 'none',
+      username: 'tester',
+      professionalURL: 'none',
+      location: 'testville',
+      namePronunciation: 'test'
     },
     {
       id: 2,
-      email: 'test@gmail.com',
+      email: 'tester@gmail.com',
+      password: 'secret',
       firstName: 'test',
-      lastName: 'user'
+      lastName: 'user',
+      profilePic: 'none',
+      username: 'tester',
+      professionalURL: 'none',
+      location: 'testville',
+      namePronunciation: 'test'
     }];
 
     let expected: Observable<User[]> = new Observable<User[]>;
@@ -68,36 +69,9 @@ describe('FollowerService', () => {
       });
     }));   
 
-    spyOn(service, 'getFollowers').and.returnValue(expected);
-    let actualFollower = service.getFollowers();
+    spyOn(service, 'getUsers').and.returnValue(expected);
+    let actualFollower = service.getUsers('test');
     expect(actualFollower).toEqual(expected);
-    done();
-  });
-
-  it('Should get following and send an http get request', (done) => {
-    const expectedfollowing: User[] =[{
-      id: 1,
-      email: 'tester@gmail.com',
-      firstName: 'test',
-      lastName: 'user'
-    },
-    {
-      id: 2,
-      email: 'test@gmail.com',
-      firstName: 'test',
-      lastName: 'user'
-    }];
-
-    let expected: Observable<User[]> = new Observable<User[]>;
-    expected.pipe(tap(users => {
-      expectedfollowing.forEach(followers => {
-        users.push(followers);
-      });
-    }));   
-
-    spyOn(service, 'getFollowing').and.returnValue(expected);
-    let actualFollowing = service.getFollowing();
-    expect(actualFollowing).toEqual(expected);
     done();
   });
 
@@ -133,27 +107,54 @@ describe('FollowerService', () => {
     done();
   });
   
-  it('Should send a http get request for get followers', (done) =>{
-    const getFollowersReq = httpTestingController.expectOne(`${service.followersUrl}`);
+  it('Should send a http get request for get users', (done) =>{
+    let getUrl = `${environment.baseUrl}/followers/user/1`;
+    service.getUsers(getUrl).subscribe();
+    const getFollowersReq = httpTestingController.expectOne(getUrl);
     expect(getFollowersReq.request.method).toBe("GET");
+
+    //Just returning an empty body for the request, as we just want to verify the 
+    //http request is called, not that anything is returned.
+    getFollowersReq.flush({});
+    httpTestingController.verify();
     done();
   });
 
-  it('Should send a http get request for get following', (done) =>{
-    const getFollowingReq = httpTestingController.expectOne(`${service.followingUrl}`);
+  it('Should send a http get request for get count', (done) =>{
+    let getUrl = `${environment.baseUrl}/following/user/1/count`;
+    service.getCount(getUrl).subscribe();
+    const getFollowingReq = httpTestingController.expectOne(`${getUrl}`);
     expect(getFollowingReq.request.method).toBe("GET");
+
+    //Just returning an empty body for the request, as we just want to verify the 
+    //http request is called, not that anything is returned.
+    getFollowingReq.flush({});
     done();
   });
 
-  //does not work right now. still is calling a get request instead of post
-  // it('Should send a http post request for addFollowing', (done) =>{
+  it('Should send a http post request for addFollowing', (done) =>{
 
-  //   spyOn(service, 'addFollowing');
-  //   authService.currentUser = user;
-  //   service.addFollowing(user.id);
-  //   const postFollowingReq = httpTestingController.expectOne("POST",`${service.followingUrl}`);
-  //   expect(postFollowingReq.request.method).toBe("POST");
-  //   postFollowingReq.flush({});
-  //   done();
-  // });
+    authService.currentUser = user;
+    service.addFollowing(user.id).subscribe();
+    const postFollowingReq = httpTestingController.expectOne(`${service.followingUrl}`);
+    expect(postFollowingReq.request.method).toBe("POST");
+
+    //Just returning an empty body for the request, as we just want to verify the 
+    //http request is called, not that anything is returned.
+    postFollowingReq.flush({});
+    done();
+  });
+
+  it('Should sent a http delete request for removeFollowing', (done) => {
+
+    authService.currentUser = user;
+    service.removeFollowing(user.id).subscribe();
+    const deleteFollowingRequest = httpTestingController.expectOne(`${service.followingUrl}`);
+    expect(deleteFollowingRequest.request.method).toBe("DELETE");
+
+    //Just returning an empty body for the request, as we just want to verify the 
+    //http request is called, not that anything is returned.
+    deleteFollowingRequest.flush({});
+    done();
+  });
 });

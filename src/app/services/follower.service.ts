@@ -12,17 +12,13 @@ export class FollowerService {
 
   followersUrl: string = `${environment.baseUrl}/followers`
   followingUrl: string = `${environment.baseUrl}/following`
+  user: User;
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
 
-  getFollowing(): Observable<User[]> {
-    console.log('getFollowing invoked')
-    return this.http.get<User[]>(`${this.followingUrl}`, { headers: environment.headers, withCredentials: environment.withCredentials })
-  }
-
-  getFollowers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.followersUrl}`, { headers: environment.headers, withCredentials: environment.withCredentials })
+  getUsers(url: string): Observable<User[]> {
+    return this.http.get<User[]>(url, { headers: environment.headers, withCredentials: environment.withCredentials });
   }
 
   addFollowing(followingId: number): Observable<any> {
@@ -49,5 +45,9 @@ export class FollowerService {
         'followerId': this.auth.currentUser.id,
         'followingId': userId
       }, { headers: environment.headers, withCredentials: environment.withCredentials })
+  }
+
+  getCount(url: string) {
+    return this.http.get(url, { headers: environment.headers, withCredentials: environment.withCredentials })
   }
 }
