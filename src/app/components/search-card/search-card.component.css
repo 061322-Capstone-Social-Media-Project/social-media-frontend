@@ -19,6 +19,6 @@ img {
     width: 50px;
     object-fit: contain;
 }
-p {
+#nameInput {
     margin: 0 0 0 20px;
 }
