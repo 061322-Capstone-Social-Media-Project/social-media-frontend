@@ -108,13 +108,9 @@ body {
 .user-circle {
   width:10em;
   height: 10em;
-  border-radius: 7em;
-      
+  border-radius: 50%;
   border: 1px solid #888080;
-     
   margin-bottom: 1em;
-
-  /* background-image: src="assets/images/user.png"; */
   background-size: cover;
 }
 
@@ -140,9 +136,7 @@ body {
 }
 
 .header-image {
-  /* background-image: url('./assets/images/favicon.png'); */
   background-size: cover;
-
   border: 1px solid #888080;
 }
 
