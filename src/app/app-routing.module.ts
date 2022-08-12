@@ -10,6 +10,7 @@ import { UserUpdateComponent } from './components/user-update/user-update.compon
 import { UserProfilePictureComponent } from './components/user-profile-picture/user-profile-picture.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 
+
 const routes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
