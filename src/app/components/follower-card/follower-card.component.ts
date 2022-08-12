@@ -18,7 +18,6 @@ export class FollowerCardComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.principal)
-    console.log(this.user)
   }
 
   unfollow() {

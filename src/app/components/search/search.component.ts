@@ -31,7 +31,6 @@ export class SearchComponent implements OnInit {
   search(){
     this.us.findUsers(this.searchParam).subscribe(data =>
       {
-        console.warn(data)
         this.users = data;
         console.log(this.users);
       });
