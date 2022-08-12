@@ -1,29 +1,30 @@
-<app-navbar></app-navbar>
-
-<div class="sidebyside">
+<div class="sidebyside sticky">
     <app-user-card></app-user-card>
 </div>
 
 <div [ngClass]="['sidebyside', 'post-feed-container']">
-    <form class="form" *ngIf="!createPost; else createPostTemplate">
-        <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Something on your mind?</mat-label>
-            <input matInput (focus)="toggleCreatePost()">
-        </mat-form-field>
-    </form>
+    <div class="mind">
+        <form class="form" *ngIf="!createPost; else createPostTemplate">
+            <mat-form-field appearance="fill">
+                <mat-label>Something on your mind?</mat-label>
+                <input matInput (focus)="toggleCreatePost()">
+            </mat-form-field>
+        </form>
+    </div>
 
     <ng-template #createPostTemplate>
         <form class="form" [formGroup]="postForm" (ngSubmit)="submitPost($event)">
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field appearance="fill">
                 <mat-label>Make a Post</mat-label>
                 <textarea matInput autofocus formControlName="text"></textarea>
             </mat-form-field>
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field appearance="fill">
                 <mat-label>Add an Image?</mat-label>
                 <input matInput formControlName="imageUrl">
             </mat-form-field>
-            <div align="end">
+            <div class="form-btns">
                 <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>
+                <span id="buttonSpreader"></span>
                 <button mat-raised-button color="primary" (click)="submitPost($event)">Post</button>
             </div>
 
@@ -33,4 +34,5 @@
     <div id="post-feed" *ngFor="let post of posts">
         <app-post [post]="post"></app-post>
     </div>
+    <app-scroll-to-top></app-scroll-to-top>
 </div>

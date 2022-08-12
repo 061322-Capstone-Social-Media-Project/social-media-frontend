@@ -1,0 +1,22 @@
+#form, input, #inputBtn {
+    display: flex;
+    height: 25px;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 14px;
+
+}
+#inputBtn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+    border: 1px solid black;
+    letter-spacing: .1px;
+    font-weight: 500;
+}
+input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 1px solid black;
+    border-right: none;
+}

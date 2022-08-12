@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+<div class="wrapper bg-white mt-sm-5">
+    <h2 class="pb-4 border-bottom d-flex justify-content-center">Account settings</h2>
+    <div class="py-2 center">
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label for="firstname">First Name</label>
+                <input type="text" class="bg-light form-control" placeholder="{{currentUser.firstName}}"
+                    [(ngModel)]="firstName">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="bg-light form-control" placeholder="{{currentUser.lastName}}"
+                    [(ngModel)]="lastName">
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="username">Username</label>
+                <input type="tel" class="bg-light form-control" placeholder="{{currentUser.username}}"
+                    [(ngModel)]="username">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="password">Password</label>
+                <input type="password" class="bg-light form-control" placeholder="**************" [(ngModel)]="password">
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="namePronunciation">Name Pronunciation</label>
+                <input type="tel" class="bg-light form-control" placeholder="{{currentUser.namePronunciation}}"
+                    [(ngModel)]="namePronunciation">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="location">Location</label>
+                <input type="tel" class="bg-light form-control" placeholder="{{currentUser.location}}"
+                    [(ngModel)]="location">
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label for="email">Email Address</label>
+                <input type="text" class="bg-light form-control" placeholder="{{currentUser.email}}"
+                    [(ngModel)]="email">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="externalLink">External Link</label>
+                <input type="tel" class="bg-light form-control" placeholder="{{currentUser.professionalURL}}"
+                    [(ngModel)]="professionalUrl">
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6">
+                <label for="hobby1">Hobby 1</label>
+                <input type="text" class="bg-light form-control" placeholder="{{hobby1}}" [(ngModel)]="hobby1">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="hobby2">Hobby 2</label>
+                <input type="tel" class="bg-light form-control" placeholder="{{hobby2}}" [(ngModel)]="hobby2">
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="hobby3">Hobby 3</label>
+                <input type="tel" class="bg-light form-control" placeholder="{{hobby3}}" [(ngModel)]="hobby3">
+            </div>
+            <div class="col-md-6 pt-md-0 pt-3">
+                <label for="ProfilePic">Profile Picture URL</label>
+                <input type="text" class="bg-light form-control" placeholder="{{profilePic}}" [(ngModel)]="profilePic">
+            </div>            
+        </div>
+        <div class="py-3 pb-4 border-bottom" style="display: flex; justify-content: flex-end">
+            <button class="btn warn border button" [routerLink]="['/user-profile']"
+                [queryParams]="{id:currentUser.id}">Cancel</button>
+            <span id="buttonSpreader"></span>
+                <button class="btn btn-primary mr-3" (click)="updateUser()" [routerLink]="['/user-profile']"
+                    [queryParams]="{id:currentUser.id}">Save Changes</button>
+        </div>
+    </div>
+</div>
