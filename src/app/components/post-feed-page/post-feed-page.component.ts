@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
+import { fromEvent, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-feed-page',
