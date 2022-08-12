@@ -31,11 +31,6 @@ export class FollowersComponent implements OnInit {
     if (!this.user || this.user.id == this.principal.id) {
       this.user = this.principal;
     }
-    console.log('user')
-    console.log(this.user)
-    console.log('principal')
-    console.log(this.principal)
-    console.log(this.user == this.principal)
     this.fs.getUsers(`${environment.baseUrl}/${this.view}/user/${this.user.id}?limit=10`).subscribe((data: any) => {
       this.users = data;
     })
@@ -55,11 +50,6 @@ export class FollowersComponent implements OnInit {
     this.fs.removeFollowing(this.unFollowUserId).subscribe(response => {
       this.ngOnInit();
     });
-    // for (let i=0; i<this.users.length; i++) {
-    //   if (this.users[i].id == this.unFollowUserId) {
-    //     delete this.users[i];
-    //   }
-    // }
   }
 
   getNext() {
@@ -68,7 +58,6 @@ export class FollowersComponent implements OnInit {
     })
     this.offsetBy = this.offsetBy + 10;
     this.pageNumber = this.pageNumber + 1;
-    console.log(this.offsetBy + " " + this.pageNumber);
     if (this.offsetBy + 10 > this.count) {
       this.next = ""
     } else {
@@ -87,7 +76,6 @@ export class FollowersComponent implements OnInit {
     })
     this.pageNumber = this.pageNumber - 1;
     this.offsetBy = this.offsetBy - 10;
-    console.log(this.offsetBy + " " + this.pageNumber);
     if (this.offsetBy != 0 && this.offsetBy == 10) {
       this.prev = `${environment.baseUrl}/${this.view}/user/${this.user.id}?limit=10`;
     } else if (this.offsetBy != 0 && this.offsetBy > 10) {
