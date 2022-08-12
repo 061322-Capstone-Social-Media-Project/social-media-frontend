@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit {
       {
         console.warn(data)
         this.users = data;
+        console.log(this.users);
       });
   }
 }

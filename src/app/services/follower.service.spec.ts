@@ -20,8 +20,14 @@ describe('FollowerService', () => {
       providers: [{ provide: User, useValue: {
         id: 1,
         email: 'tester@gmail.com',
+        password: 'secret',
         firstName: 'test',
-        lastName: 'user'
+        lastName: 'user',
+        profilePic: 'none',
+        username: 'tester',
+        professionalURL: 'none',
+        location: 'testville',
+        namePronunciation: 'test'
     }}]
     });
     httpTestingController = TestBed.inject(HttpTestingController);
