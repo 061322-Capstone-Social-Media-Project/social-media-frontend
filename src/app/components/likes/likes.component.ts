@@ -28,14 +28,14 @@ export class LikesComponent implements OnInit {
   likeSwitch = () => {
     this.likeButton = true;
     if (this.like === true) {
-      this.likes = new Likes(0, this.post.author.id, this.post.id);
+      this.likes = new Likes(0, this.authService.currentUser.id, this.post.id);
       this.ls.postLike(this.likes).subscribe((response) => {
         this.setLikes();
       }, (error) => {
         this.setLikes();
       }
       );
-    } else if (this.like === false) {
+    } else {
       this.ls.removeLike(this.likeId).subscribe((response) => {
         this.setLikes();
       }, (error) => {
