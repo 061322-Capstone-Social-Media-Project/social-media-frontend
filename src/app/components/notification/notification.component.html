@@ -1,12 +1,16 @@
 <!-- Example single danger button -->
 <div class="btn-group">
-  <button type="button" class="fa-solid fa-bell" data-bs-toggle="dropdown" aria-expanded="false"
+  <button type="button" class="fa-solid fa-bell btn btn-primary position-relative" data-bs-toggle="dropdown" aria-expanded="false"
     (click)="getNotifications()">
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{notifications.length}}
+      <span class="visually-hidden">unread messages</span>
+    </span>
   </button>
   <ul class="dropdown-menu dropdown-primary force-scroll">
     <li *ngFor="let notification of notifications?.reverse()">
-      <div class="dropdown-item">{{notification.notificationBody}} {{notification.timeStamp | date:'MM/dd/yy h:mm:ssa'}}
-        <button class="delete" (click)="deleteNotification(notification.id); $event.stopPropagation()">Delete</button>
+      <div class="dropdown-item">{{notification.notificationBody}} {{notification.timeStamp | dateAgo}}
+        <button type="button" class="btn btn-link "  (click)="deleteNotification(notification.id); $event.stopPropagation()"><i class="fa-solid fa-circle-minus"></i></button>
       </div>
     </li>
   </ul>
