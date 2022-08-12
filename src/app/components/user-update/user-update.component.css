@@ -1,0 +1,28 @@
+.wrapper {
+    width: 98%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+#buttonSpreader {
+    margin: .5em;
+}
+
+button {
+    cursor: pointer;
+}
+
+.warn {
+    color: #ffffff;
+    background-color: #ff0000;
+}
+
+.warn:hover {
+    background-color: #e40000;
+
+}

@@ -1,30 +1,78 @@
-.gradient-custom-blog {
-    /* fallback for old browsers */
-    background: #ffffff;
-   
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to bottom right, #ffffff, #b9b9ba);
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to bottom right, #ffffff, #B9B9BA);
+.post-feed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+    /* margin: auto; */
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-top: -10.2%;
+    /* margin-top: -21%; */
+    width: 70%;
 }
 
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    /* top: 15em; */
+    /* left: 10em; */
+    top: 5.4em;
+    left: 1em;
+    z-index: 1;
+}
 
-.button2{background-color: #fcb414; color: white;}
-.button3{background-color: #474c55; color: white;}
+.scroll-to-top {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+}
 
-.space {
-    width: 4px;
-    height: auto;
-    display: inline-block;
-  }
+.show-scrollTop {
+    opacity: 1;
+    transition: all .2s ease-in-out;
+}
 
-  button{
-    width:80px;
-    height: 36px;
-    margin-top: 20px;
-  }
+/* .central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: auto;
+    margin-left: auto;
+    width: 100%;
+} */
 
-  .secondaryBtn {
-    margin-right: 20px;
-  }
+#post-feed {
+    /* margin: auto; */
+    width: 70%;
+}
+
+.mind {
+    /* min-width: none; */
+    min-width: 48.5vw;
+}
+
+mat-form-field {
+    margin: auto;
+    width: 100%;
+}
+
+ng-template {
+    margin: auto;
+    width: 70%;
+}
+
+#buttonSpreader {
+    margin: .5em;
+}
+
+.form-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    /* margin-right: 30%; */
+}

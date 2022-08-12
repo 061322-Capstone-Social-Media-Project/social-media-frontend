@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserProfileService } from 'src/app/services/user-profile.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit{
 
-  constructor(private authService: AuthService, private router: Router) { }
+  @Output() getParam = new EventEmitter();
+  searchParam!: string;
+
+  constructor(private authService: AuthService, private router: Router, private us: UserProfileService) { }
   
   ngOnInit(): void {
   }
@@ -21,6 +25,13 @@ export class NavbarComponent implements OnInit{
   logout() {
     this.authService.logout();
     this.router.navigate(['login']);
+  }
+
+  search(){
+    if(this.searchParam.length > 0){
+      this.us.setSearchParam(this.searchParam);
+      this.router.navigate(['search']);
+    }
   }
 
 }

@@ -114,14 +114,13 @@ body {
      
   margin-bottom: 1em;
 
-  background-image: url('./assets/images/favicon.png');
+  /* background-image: src="assets/images/user.png"; */
   background-size: cover;
 }
 
 .user-card {
   background-color: #474C55;
   color: #fff;
-  width: 10em;
   text-align: center;
   margin: 1em;
 }
@@ -141,7 +140,7 @@ body {
 }
 
 .header-image {
-  background-image: url('./assets/images/favicon.png');
+  /* background-image: url('./assets/images/favicon.png'); */
   background-size: cover;
 
   border: 1px solid #888080;
@@ -171,6 +170,10 @@ body {
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.clickable:hover{
+  cursor: pointer;
 }
 
 

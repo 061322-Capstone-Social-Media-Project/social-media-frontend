@@ -1,0 +1,32 @@
+<ul>
+    <li (click)="view = 'following'; ngOnInit()" [ngClass]="{'active' : view == 'following', 'inactive' : view == 'followers'}"><h1>{{user == principal ? "I'm" : user.firstName + "'s"}} Following</h1></li>
+    <li (click)="view = 'followers'; ngOnInit()" [ngClass]="{'inactive' : view == 'following', 'active' : view == 'followers'}"><h1>{{user == principal ? "My" : user.firstName + "'s"}} Followers</h1></li>
+</ul>
+    <div id="followers-container">
+        <div class="pagination" *ngIf="count > 0; else checkCount">
+            <button (click)="getPrev()" [disabled]='prev == ""' mat-button>Prev</button>
+            <p *ngIf="count == 0">Nothing to display</p>
+            <p *ngIf="count <= 10 && count > 0">Showing {{count}} results</p>
+        <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of
+            {{count}} </p>
+        <button (click)="getNext()" [disabled]='next == ""' mat-button>Next</button>
+    </div>
+    <div>
+        <app-follower-card *ngFor="let u of users" [user]="u" [view]="view" [principal]="user == principal"
+            (callParent)="getMsgFromChild($event)"></app-follower-card>
+    </div>
+    <div class="pagination" *ngIf="count > 0">
+        <button [disabled]='prev == ""' (click)="getPrev()" mat-button>Prev</button>
+        <p *ngIf="count <= 10 && count > 0">Showing {{count}} results</p>
+        <p *ngIf="count > 10">Showing {{offsetBy + 1}} - {{(offsetBy + 10) > count ? count : (offsetBy + 10)}} of
+            {{count}} </p>
+        <button [disabled]='next == ""' (click)="getNext()" mat-button>Next</button>
+    </div>
+    <ng-template #checkCount>
+        <div class="pagination">
+            <p></p>
+            <p>Nothing to display</p>
+            <p></p>
+        </div>
+    </ng-template>
+</div>

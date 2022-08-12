@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
-import { PostService } from 'src/app/services/post.service';
 import { LikesService } from 'src/app/services/likes.service';
 import { Likes } from 'src/app/models/likes';
-import { empty, Subscription } from 'rxjs';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-likes',
   templateUrl: './likes.component.html',
