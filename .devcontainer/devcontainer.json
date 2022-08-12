@@ -19,7 +19,9 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"dbaeumer.vscode-eslint",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"esbenp.prettier-vscode",
+				"Angular.ng-template"
 			]
 		}
 	},
