@@ -1,17 +1,54 @@
-<!-- Example single danger button -->
 <div class="btn-group">
-  <button type="button" class="fa-solid fa-bell btn btn-primary position-relative" data-bs-toggle="dropdown" aria-expanded="false"
-    (click)="clickBell()">
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-      {{countNewNotifications()}}
+  <button
+    type="button"
+    class="fa-solid fa-bell btn btn-primary"
+    id="dropdownMenuClickableInside"
+    data-bs-toggle="dropdown"
+    data-bs-auto-close="outside"
+    data-bs-display="static"
+    aria-expanded="false"
+    (click)="onClickBell()">
+    <span
+      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{ unreadNotifications() }}
       <span class="visually-hidden">unread messages</span>
     </span>
   </button>
-  <ul class="dropdown-menu dropdown-primary force-scroll">
-    <li *ngFor="let notification of notifications?.reverse()">
-      <div class="dropdown-item">{{notification.notificationBody}} {{notification.timeStamp | dateAgo}}
-        <button type="button" class="btn btn-link "  (click)="updateNotification(notification); $event.stopPropagation()"><i class="fa-solid fa-circle-minus"></i></button>
-      </div>
-    </li>
+  <ul
+    class="dropdown-menu dropdown-menu-end dropdown-primary force-scroll"
+    aria-labelledby="dropdownMenuClickableInside">
+    <div class="d-flex justify-content-end">
+      <li>
+        <a (click)="readAll()" class="dropdown-item">
+          read all
+          <i class="fa-solid fa-book-open"></i>
+        </a>
+      </li>
+      <li>
+        <a (click)="dismissAll()" class="dropdown-item text-danger">
+          dismiss all <i class="fa-solid fa-circle-minus"></i>
+        </a>
+      </li>
+    </div>
+    <li><hr class="dropdown-divider" /></li>
+    <ng-container *ngFor="let notification of notifications">
+      <li *ngIf="notification.status !== 'DISMISS'">
+        <div class="d-flex">
+          <div
+            class="dropdown-item me-auto text-right"
+            (click)="readNotification(notification)"
+            [ngClass]="{ 'fw-bolder': notification.status == 'UNREAD' }">
+            {{ notification.notificationBody }}
+            {{ notification.timeStamp | dateAgo }}
+          </div>
+          <button
+            type="button"
+            class="dropdown-item text-danger w-auto"
+            (click)="dismissNotification(notification)">
+            <i class="fa-solid fa-circle-minus"></i>
+          </button>
+        </div>
+      </li>
+    </ng-container>
   </ul>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, tap } from 'rxjs';
+import { map, tap, EMPTY } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Notify } from 'src/app/models/notification';
@@ -16,25 +16,17 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNotifications();
-    
   }
 
   getNotifications() {
     this.ns
       .getNotifications(this.as.currentUser.id)
       .pipe(
-        map(data => {
-          return data.filter(notification => {
-            if (
-              notification.status === 'NEW' ||
-              notification.status === 'UNREAD'
-            ) {
-              return true;
-            } else {
-              return false;
-            }
-          });
-        }),
+        map(notifications =>
+          notifications.filter(notification =>
+            ['READ', 'UNREAD'].includes(notification.status)
+          )
+        ),
         tap(data => {
           this.notifications = data;
           console.log(this.notifications);
@@ -43,26 +35,35 @@ export class NotificationComponent implements OnInit {
       .subscribe();
   }
 
-  clickBell() {
-    this.notifications.forEach(n => {
-      n.status = 'UNREAD'
-      this.ns.updateNotification(n).subscribe(_ => this.getNotifications());
+  onClickBell() {}
+
+  unreadNotifications() {
+    return this.notifications.filter(
+      notification => notification.status === 'UNREAD'
+    ).length;
+  }
+
+  dismissNotification(n: Notify) {
+    n.status = 'DISMISS';
+    this.ns.updateNotification(n).subscribe();
+  }
+
+  readNotification(n: Notify) {
+    if (n.status !== 'READ') {
+      n.status = 'READ';
+      this.ns.updateNotification(n).subscribe();
+    }
+  }
+
+  readAll() {
+    this.notifications.forEach(notification => {
+      this.readNotification(notification);
     });
-    
   }
 
-  countNewNotifications() {
-    return this.notifications.filter(notification => {
-      if (notification.status === 'NEW') {
-        return true;
-      } else {
-        return false;
-      }
-    }).length;
-  }
-
-  updateNotification(n: Notify) {
-    n.status = 'READ';
-    this.ns.updateNotification(n).subscribe(_ => this.getNotifications());
+  dismissAll() {
+    this.notifications.forEach(notification => {
+      this.dismissNotification(notification);
+    });
   }
 }
