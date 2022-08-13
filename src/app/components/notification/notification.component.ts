@@ -49,7 +49,7 @@ export class NotificationComponent implements OnInit {
   }
 
   readNotification(n: Notify) {
-    if (n.status !== 'READ') {
+    if (!['READ', 'DISMISS'].includes(n.status)) {
       n.status = 'READ';
       this.ns.updateNotification(n).subscribe();
     }
