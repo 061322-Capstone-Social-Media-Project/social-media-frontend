@@ -35,8 +35,6 @@ export class NotificationComponent implements OnInit {
       .subscribe();
   }
 
-  onClickBell() {}
-
   unreadNotifications() {
     return this.notifications.filter(
       notification => notification.status === 'UNREAD'

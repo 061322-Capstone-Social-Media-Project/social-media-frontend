@@ -2,12 +2,11 @@
   <button
     type="button"
     class="fa-solid fa-bell btn btn-primary"
-    id="dropdownMenuClickableInside"
+    id="dropdownMenu"
     data-bs-toggle="dropdown"
     data-bs-auto-close="outside"
     data-bs-display="static"
-    aria-expanded="false"
-    (click)="onClickBell()">
+    aria-expanded="false">
     <span
       class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
       {{ unreadNotifications() }}
@@ -16,7 +15,7 @@
   </button>
   <ul
     class="dropdown-menu dropdown-menu-end dropdown-primary force-scroll"
-    aria-labelledby="dropdownMenuClickableInside">
+    aria-labelledby="dropdownMenu">
     <div class="d-flex justify-content-end">
       <li>
         <a (click)="readAll()" class="dropdown-item">
@@ -35,7 +34,7 @@
       <li *ngIf="notification.status !== 'DISMISS'">
         <div class="d-flex">
           <div
-            class="dropdown-item me-auto text-right"
+            class="dropdown-item me-auto"
             (click)="readNotification(notification)"
             [ngClass]="{ 'fw-bolder': notification.status == 'UNREAD' }">
             {{ notification.notificationBody }}
