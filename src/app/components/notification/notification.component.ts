@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, tap, EMPTY } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Notify } from 'src/app/models/notification';
