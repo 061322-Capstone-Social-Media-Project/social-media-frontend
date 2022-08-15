@@ -29,7 +29,7 @@ export class NotificationComponent implements OnInit {
         ),
         tap(data => {
           this.notifications = data;
-          console.log(this.notifications);
+         
         })
       )
       .subscribe();
