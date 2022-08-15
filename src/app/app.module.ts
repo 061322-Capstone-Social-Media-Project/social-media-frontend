@@ -26,6 +26,7 @@ import { UserProfilePictureComponent } from './components/user-profile-picture/u
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { LikesComponent } from './components/likes/likes.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NotificationComponent } from './components/notification/notification.co
     UserProfileComponent,
     UserUpdateComponent,
     UserProfilePictureComponent,
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
