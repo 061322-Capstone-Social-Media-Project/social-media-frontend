@@ -188,4 +188,12 @@ body {
   margin-right: 20px;
 }
 
+.primaryBtn:hover {
+  transform: scale(1.1);
+  transition: .2s ease-in-out;
+}
 
+.secondaryBtn:hover {
+  transform: scale(1.1);
+  transition: .2s ease-in-out;
+}

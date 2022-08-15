@@ -69,11 +69,11 @@
             </div>            
         </div>
         <div class="py-3 pb-4 border-bottom" style="display: flex; justify-content: flex-end">
-            <button class="btn warn border button" [routerLink]="['/user-profile']"
+            <button class="secondaryBtn" mat-button [routerLink]="['/user-profile']"
                 [queryParams]="{id:currentUser.id}">Cancel</button>
             <span id="buttonSpreader"></span>
-                <button class="btn btn-primary mr-3" (click)="updateUser()" [routerLink]="['/user-profile']"
-                    [queryParams]="{id:currentUser.id}">Save Changes</button>
+                <button class="primaryBtn" mat-button (click)="updateUser()" [routerLink]="['/user-profile']"
+                    [queryParams]="{id:currentUser.id}">Save</button>
         </div>
     </div>
 </div>

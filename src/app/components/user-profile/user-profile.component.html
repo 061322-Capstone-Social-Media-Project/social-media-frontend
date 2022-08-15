@@ -9,9 +9,9 @@
           <p class="text-muted mb-4">{{user.location}}</p>
           <div class="d-flex justify-content-center mb-2">
             <!-- If viewing other profile -->
-            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="isFollowing ? unfollow() : follow()">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
+            <button type="button" class="primaryBtn" mat-button *ngIf="user.id !== loggedInUser.id" (click)="isFollowing ? unfollow() : follow()">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
             <!-- If viewing own profile -->
-            <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
+            <button type="button" class="primaryBtn" mat-button (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
           </div>
         </div>
       </div>

@@ -11,9 +11,7 @@ div {
     flex-direction: row;
     justify-content: space-between;
 }
-/* .following:hover, .follower:hover {
-    cursor: pointer;
-} */
+
 button {
     width: 66px;
     height: 36px;
