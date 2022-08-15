@@ -1,7 +1,5 @@
 .force-scroll {
-
-    overflow-y: scroll;
-    
+    overflow-y: auto;
     height: 300px;
-    
-    }
+    min-width: 300px;
+}

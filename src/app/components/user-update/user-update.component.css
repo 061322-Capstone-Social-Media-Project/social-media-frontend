@@ -1,20 +1,19 @@
 .wrapper {
-    width: 98%;
+    width: 60%;
     margin: auto;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 label {
     margin-bottom: 5px;
 }
 
-#buttonSpreader {
-    margin: .5em;
-}
-
 button {
     cursor: pointer;
+    width: 66px;
+    height: 36px;
+    padding: 0;
 }
 
 .warn {
