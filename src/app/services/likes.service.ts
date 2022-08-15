@@ -25,6 +25,9 @@ export class LikesService {
     return this.http.get<Likes>(`${this.likesUrl}/user/${user_id}/post/${post_id}`);
 
   }
+  countLike(post_id: number){
+    return this.http.get<number>(`${this.likesUrl}/count/post/${post_id}`);
+  }
 
 }
 
