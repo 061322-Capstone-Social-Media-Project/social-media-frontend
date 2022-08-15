@@ -30,7 +30,7 @@ mat-form-field {
 #follow-card:hover {
     cursor: pointer;
 }
-img {
-    width: 150px;
-    height: auto;
+.user-circle {
+    margin: 0 auto;
+    
 }
