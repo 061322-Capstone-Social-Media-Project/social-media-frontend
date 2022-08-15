@@ -43,7 +43,7 @@ export class UserUpdateComponent implements OnInit {
     this.location = this.currentUser.location;
     this.namePronunciation = this.currentUser.namePronunciation;
     this.profilePic = this.currentUser.profilePic;
-    this.ngOnInit();
+    // this.ngOnInit();
    }
 
   ngOnInit(): void {
