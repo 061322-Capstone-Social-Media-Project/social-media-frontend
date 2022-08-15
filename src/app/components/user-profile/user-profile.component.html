@@ -3,16 +3,15 @@
     <div class="col-lg-4 user-card-item">
       <div class="card mb-4">
         <div class="card-body text-center">
-          <img src="{{user.profilePic}}" alt="avatar"
-            class="rounded-circle img-fluid" style="width: 150px;">
+          <div style="background-image: url({{user.profilePic}})" alt="Avatar" class="user-circle img-fluid"></div>
           <h3 class="my-3">{{user.firstName}} {{user.lastName}}</h3>
           <p class="text-muted mb-1">{{user.namePronunciation}}</p>
           <p class="text-muted mb-4">{{user.location}}</p>
           <div class="d-flex justify-content-center mb-2">
             <!-- If viewing other profile -->
-            <button type="button" class="btn btn-primary" *ngIf="user.id !== loggedInUser.id" (click)="isFollowing ? unfollow() : follow()">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
+            <button type="button" class="primaryBtn" mat-button *ngIf="user.id !== loggedInUser.id" (click)="isFollowing ? unfollow() : follow()">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
             <!-- If viewing own profile -->
-            <button type="button" class="btn btn-primary" (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
+            <button type="button" class="primaryBtn" mat-button (click) = "updateUser()" *ngIf="user.id === loggedInUser.id">Edit Profile</button>
           </div>
         </div>
       </div>
