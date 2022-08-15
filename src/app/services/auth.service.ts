@@ -30,8 +30,8 @@ export class AuthService {
     this.http.post(`${this.authUrl}/logout`, null).subscribe();
   }
 
-  register(firstName: string, lastName: string, email: string, password: string, username: string): Observable<any> {
-    const payload = {firstName: firstName, lastName: lastName, email: email, password: password, username: username};
+  register(firstName: string, lastName: string, email: string, password: string, username: string, profilePic: string): Observable<any> {
+    const payload = {firstName: firstName, lastName: lastName, email: email, password: password, username: username, profilePic: profilePic};
     return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers});
   }
 }
