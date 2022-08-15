@@ -1,5 +1,5 @@
 .user-card-item {
-    margin-left: -20%;
+    margin-left: -12%;
 }
 
 .upf {
@@ -29,4 +29,8 @@ mat-form-field {
 }
 #follow-card:hover {
     cursor: pointer;
+}
+.user-circle {
+    margin: 0 auto;
+    
 }

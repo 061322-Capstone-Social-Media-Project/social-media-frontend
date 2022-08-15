@@ -11,9 +11,7 @@ div {
     flex-direction: row;
     justify-content: space-between;
 }
-/* .following:hover, .follower:hover {
-    cursor: pointer;
-} */
+
 button {
     width: 66px;
     height: 36px;
@@ -33,9 +31,13 @@ img:hover {
 .follower p {
     margin: 0 0 0 20px;
 }
-p {
+#nameInput {
     margin: 0;
     font-size: 16px;
+}
+.follower #nameInput {
+    margin-left: 20px;
+
 }
 button:hover {
     background-color: #f26925;
