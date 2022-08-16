@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { ScrollToTopComponent } from './scroll-to-top.component';
 
@@ -19,5 +20,27 @@ describe('ScrollToTopComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should make windowScrolled true when document scrollTop is >100', () => {
+    component.windowScrolled = false;
+    window.pageYOffset = 101;
+    component.onWindowScroll();
+    expect(component.windowScrolled).toBeTrue();
+  });
+
+  it('should make windowScrolled false when document scrollTop is < 10', () => {
+    component.windowScrolled = true;
+    window.pageYOffset = 7;
+    component.onWindowScroll();
+    expect(component.windowScrolled).toBeFalse();
+
+  });
+
+  it('should scroll the page to the top when scrollToTop is called', () => {
+    spyOn(window, 'scrollTo');
+    document.documentElement.scrollTop = 100;
+    component.scrollToTop();
+    expect(window.scrollTo).toHaveBeenCalled();
   });
 });
