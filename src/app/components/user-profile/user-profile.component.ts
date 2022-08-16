@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   constructor(private userProfileService: UserProfileService, private authService: AuthService, private followService: FollowerService,
      private postService: PostService, private router:Router, private route: ActivatedRoute, private hobbyService: HobbyService) { 
-      this.ngOnInit();
+      // this.ngOnInit();
   }
 
   ngOnInit(): void {
@@ -72,15 +72,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         }
       }
     )
-    // console.log("Current user: " + JSON.stringify(this.authService.currentUser));
   }
 
   updateUser(){
     this.router.navigate(['update-user']);
-  }
-
-  toUserProfilePicture(){
-    this.router.navigate(['user-profile-picture']);
   }
 
   follow() {
