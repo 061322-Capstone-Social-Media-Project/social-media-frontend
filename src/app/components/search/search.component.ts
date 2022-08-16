@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
     this.us.findUsers(this.searchParam).subscribe(data =>
       {
         this.users = data;
+        console.log(this.users);
       });
   }
 }

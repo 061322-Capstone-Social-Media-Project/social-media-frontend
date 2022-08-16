@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
 
@@ -20,8 +20,14 @@ describe('FollowerService', () => {
       providers: [{ provide: User, useValue: {
         id: 1,
         email: 'tester@gmail.com',
+        password: 'secret',
         firstName: 'test',
-        lastName: 'user'
+        lastName: 'user',
+        profilePic: 'none',
+        username: 'tester',
+        professionalURL: 'none',
+        location: 'testville',
+        namePronunciation: 'test'
     }}]
     });
     httpTestingController = TestBed.inject(HttpTestingController);

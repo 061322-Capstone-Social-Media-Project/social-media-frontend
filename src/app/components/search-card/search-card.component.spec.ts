@@ -14,10 +14,26 @@ describe('SearchCardComponent', () => {
 
     fixture = TestBed.createComponent(SearchCardComponent);
     component = fixture.componentInstance;
+    component.user = {
+      id: 1,
+      email: 'tester@gmail.com',
+      password: 'secret',
+      firstName: 'test',
+      lastName: 'user',
+      profilePic: 'none',
+      username: 'tester',
+      professionalURL: 'none',
+      location: 'testville',
+      namePronunciation: 'test'
+    };
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have a input user', () => {
+    expect(component.user).toBeTruthy();
   });
 });
