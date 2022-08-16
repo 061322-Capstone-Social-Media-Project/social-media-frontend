@@ -11,15 +11,15 @@ export class TokenStorageService {
   constructor() {}
 
   deleteToken(): void {
-    window.localStorage.clear();
+    localStorage.clear();
   }
 
   public saveToken(token: string): void {
-    window.localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string | null {
-    return window.localStorage.getItem(TOKEN_KEY);
+    return localStorage.getItem(TOKEN_KEY);
   }
 
   getDecodedAccessToken(): Token | null {

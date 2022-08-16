@@ -15,7 +15,10 @@ export class NotificationComponent implements OnInit {
   constructor(private ns: NotificationService, private as: AuthService) {}
 
   ngOnInit(): void {
-    this.getNotifications();
+    // route guard or gg
+    if (this.as.isLoggedIn()) {
+      this.getNotifications();
+    }
   }
 
   getNotifications() {
@@ -29,7 +32,7 @@ export class NotificationComponent implements OnInit {
         ),
         tap(data => {
           this.notifications = data;
-         
+          console.log(data)
         })
       )
       .subscribe();
@@ -64,4 +67,5 @@ export class NotificationComponent implements OnInit {
       this.dismissNotification(notification);
     });
   }
+  
 }
