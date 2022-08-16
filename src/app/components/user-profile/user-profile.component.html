@@ -22,7 +22,7 @@
           <ul class="list-group list-group-flush rounded-3">
             <li class="list-group-item d-flex justify-content-left align-items-center p-3">
               <i class="fas fa-globe fa-lg text-warning"></i>
-              <p class="mb-2">Professional Profile</p>
+              <p class="mb-0">Professional Profile</p>
             </li>
             <li class="list-group-item align-items-center p-3">
               <a href="{{user.professionalURL}}">{{user.professionalURL}}</a>
@@ -35,7 +35,7 @@
           <ul class="list-group list-group-flush rounded-3">
             <li class="list-group-item d-flex justify-content-left align-items-center p-3">
               <i class="fas fa-globe fa-lg text-warning"></i>
-              <p class="mb-2">Hobbies</p>
+              <p class="mb-0">Hobbies</p>
             </li>
             <li class="list-group-item align-items-center p-3">
               <p class="mb-0" *ngIf="hobby1">{{hobby1}}</p><br>
@@ -59,7 +59,7 @@
               <ul class="list-group list-group-flush rounded-3">
                 <li class="list-group-item d-flex justify-content-left align-items-center p-3">
                   <i class="fas fa-globe fa-lg text-warning"></i>
-                  <p class="mb-2">Followers</p>
+                  <p class="mb-0">Followers</p>
                 </li>
                 <li class="list-group-item align-items-center p-3">
                   <p class="mb-4" *ngIf="followingCount > 0">Following: {{followingCount}} user{{followingCount > 1 ?
