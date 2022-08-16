@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { UserProfileService } from './user-profile.service';
 import { HttpParams } from '@angular/common/http';
 import { EventEmitter } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 describe('UserProfileService', () => {
   let service: UserProfileService;
@@ -56,10 +57,23 @@ describe('UserProfileService', () => {
     done();
   });
 
-  it('should use a get method to return a user', (done) => {
-    const url = `${environment.baseUrl}/user-profile`;
+  it('should return a user from getUserById', () => {
+    let id = '1';
+    let expected: Observable<User> = new Observable<User>; 
+    expected.pipe(tap( user => {
+      user = authService.currentUser;
+    }));
 
-    service.getUserById('1');
+    spyOn(service, 'getUserById').and.returnValue(expected);
+    let actual = service.getUserById(id);
+    expect(actual).toEqual(expected);
+  });
+
+  it('should use a http get method in getUserById', (done) => {
+    let id = '1';
+    const url = `${environment.baseUrl}/user-profile?id=${id}`;
+
+    service.getUserById(id).subscribe();
     const getUserRequest = httpTestingController.expectOne(`${url}`);
     expect(getUserRequest.request.method).toBe("GET");
     getUserRequest.flush({});
@@ -69,12 +83,72 @@ describe('UserProfileService', () => {
 
   it('should emit a search param', () => {
     let search = 'test';
-    const spy = spyOn(service, 'searchEvent').and.returnValue(new EventEmitter());
-    const spy2 = spyOn(service.searchEvent, "emit");
+    const spy = spyOn(service.searchEvent, 'emit');
 
     service.setSearchParam(search);
     expect(spy).toHaveBeenCalled();
-    expect(spy2).toHaveBeenCalled();
     expect(service.getSearchParam()).toEqual(search);
+  });
+
+  it('it should get the searchParam from the getSearchParam method', () => {
+    const spy = spyOn(service, 'getSearchParam').and.callThrough();
+    //since searchParam is private, have to give a value via setter for it not to be undefined
+    service.setSearchParam('truthy');
+
+    let search = service.getSearchParam();
+    expect(spy).toHaveBeenCalled();
+    expect(search).toBeTruthy();
+  });
+
+  it('should return an Observable<User[]> from findUsers()', (done) => {
+    let search = 'test';
+    let myUsers: User[] = [{
+      id: 1,
+      email: 'tester@gmail.com',
+      password: 'secret',
+      firstName: 'test',
+      lastName: 'user',
+      profilePic: 'none',
+      username: 'tester',
+      professionalURL: 'none',
+      location: 'testville',
+      namePronunciation: 'test'
+    },
+    {
+      id: 2,
+      email: 'tester@gmail.com',
+      password: 'secret',
+      firstName: 'test',
+      lastName: 'user',
+      profilePic: 'none',
+      username: 'tester',
+      professionalURL: 'none',
+      location: 'testville',
+      namePronunciation: 'test'
+    }];
+
+    let expected: Observable<User[]> = new Observable<User[]>;
+    expected.pipe(tap(users => {
+      myUsers.forEach(data => {
+        users.push(data);
+      });
+    })); 
+    spyOn(service, 'findUsers').and.returnValue(expected);
+    let actual = service.findUsers(search);
+    expect(actual).toEqual(expected);
+    done();
+  });
+
+  it('should call a http get method in findUsers', (done) => {
+    let search = 'test';
+    const url = `${environment.baseUrl}/search?user=${search}`;
+    // let queryParams = new HttpParams().append("user", search);
+
+    service.findUsers(search).subscribe();
+    const findUsersReq = httpTestingController.expectOne(url);
+    expect(findUsersReq.request.method).toBe("GET");
+    findUsersReq.flush({});
+    httpTestingController.verify();
+    done();
   });
 });
