@@ -18,17 +18,21 @@
       <div class="card mb-4 mb-lg-0">
         <div class="card-body p-0">
           <ul class="list-group list-group-flush rounded-3">
-            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+            <li *ngIf="user.professionalURL" class="list-group-item d-flex justify-content-between align-items-center p-3">
               <i class="fas fa-globe fa-lg text-warning"></i>
-              <p class="mb-0">Professional Profile</p>
+              <p class="mb-0 col-lg-8">Professional Profile</p>
               <a href = "{{user.professionalURL}}">{{user.professionalURL}}</a>
             </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
               <i class="fas fa-globe fa-lg text-warning"></i>
-              <p class="mb-0">{{user.firstName}} {{user.lastName}}'s Hobbies</p>
-              <p class="mb-0" *ngIf = "hobby1 !== null">{{hobby1}}</p><br>
-                <p class="mb-0 " *ngIf = "hobby2 !== null">{{hobby2}}</p><br>
-                <p class="mb-0" *ngIf = "hobby3 !== null">{{hobby3}}</p>
+              <p class="mb-0 col-lg-8">Hobbies</p>
+              <ul>
+
+                <li class="mb-0" *ngIf = "hobby1 !== null">{{hobby1}}</li><br>
+                  <li class="mb-0 " *ngIf = "hobby2 !== null">{{hobby2}}</li><br>
+                  <li class="mb-0" *ngIf = "hobby3 !== null">{{hobby3}}</li>
+              </ul>
+
               
             </li>
           </ul>
