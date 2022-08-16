@@ -5,29 +5,37 @@
             <mat-card-title>{{post.author.firstName}} {{post.author.lastName}}</mat-card-title>
             <mat-card-subtitle>{{post.author.email}}</mat-card-subtitle>
         </mat-card-header>
-        <img class="mci" mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
+        
         <mat-card-content>
             <p>
                 {{post.text}}
             </p>
+            <img class="mci" mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
+            <mat-card-actions align="end">
+                <app-likes [post]="post"> </app-likes> &nbsp;
+            </mat-card-actions>
             <div *ngFor="let comment of post.comments" class="comment-container">
                 <mat-divider></mat-divider>
                 <app-comment [comment]="comment"></app-comment>
             </div>
         </mat-card-content>
-        <mat-card-actions align="end">
-            <app-likes [post]="post"> </app-likes> &nbsp;
-            <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
-        </mat-card-actions>
+        <form class="form" *ngIf="!replyToPost; else replyToPostTemplate">  
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Want to comment?</mat-label>
+                <input matInput (focus)="toggleReplyToPost()">
+            </mat-form-field>
+        </form>
+        <ng-template #replyToPostTemplate>
         <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
             <mat-form-field class="full-width" appearance="fill">
-                <mat-label>Make a Post</mat-label>
+                <mat-label>Post a reply</mat-label>
                 <textarea matInput autofocus formControlName="text"></textarea>
             </mat-form-field>
             <div align="end">
-                <button mat-raised-button color="warn" (click)="toggleReplyToPost()">Cancel</button>
-                <button mat-raised-button color="primary" type="submit">Post</button>
+                <button mat-button class="secondaryBtn" (click)="toggleReplyToPost()">Cancel</button>
+                <button mat-button class="primaryBtn" type="submit">Post</button>
             </div>
         </form>
+    </ng-template>
     </mat-card>
 </div>

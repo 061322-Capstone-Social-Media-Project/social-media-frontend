@@ -1,12 +1,18 @@
-#form, input, #inputBtn {
+#form, input {
     display: flex;
-    height: 25px;
+    height: 30px;
     align-items: center;
     border-radius: 5px;
     font-size: 14px;
+    width: 500px;
 
 }
 #inputBtn {
+    display: flex;
+    height: 30px;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 14px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left: none;
@@ -20,3 +26,11 @@ input {
     border: 1px solid black;
     border-right: none;
 }
+p {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+.spacer2 {
+    flex: .1 .5 auto;
+  }

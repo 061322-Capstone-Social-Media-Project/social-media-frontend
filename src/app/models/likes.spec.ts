@@ -11,10 +11,9 @@ describe('Likes', () => {
   });
 });
 
-//will work on later
-//had to comment out right now so karma will stop throwing errors. -Trey
-// describe('Likes', () => {
-//   it('should create an instance', () => {
-//     expect(new Likes(id,user_id,post_id)).toBeTruthy();
-//   });
-// });
+
+describe('Likes', () => {
+  it('should create an instance', () => {
+    expect(new Likes(2,2,2)).toBeTruthy();
+  });
+});
