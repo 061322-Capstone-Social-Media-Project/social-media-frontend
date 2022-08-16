@@ -1,7 +1,16 @@
 <p>
-    <mat-toolbar>
-        <span [routerLink]="['/post-feed']">Revature Social Media</span>
+    <mat-toolbar style= "background-color: #474C55">
+        <span [routerLink]="['/post-feed']" class="clickable"><img src="/assets/images/logo-white-color.png" style="height: 2.5em; padding: .5em; "></span>
         <span class="spacer"></span>
-        <button mat-button (click)="logout();">Logout</button>
+        <span class="clickable">
+            <form id="form">
+                <input type="search" id="query" name="q" placeholder="Search"[(ngModel)]="searchParam">
+                <button type="submit" (click)="search()" id="inputBtn"><img src="/assets/images/Search_Icon.png" style="height: .9em; padding: 0em; "></button>
+            </form>
+        </span>
+        <span class="spacer"></span>
+        <app-notification ></app-notification>
+        <span class="spacer2"></span>
+        <button mat-button (click)="logout()" style="color: #ffff;">Logout</button>
     </mat-toolbar>
 </p>

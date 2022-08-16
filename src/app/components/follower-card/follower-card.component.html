@@ -1,0 +1,5 @@
+<div [ngClass]="{'following' : view == 'following' && principal, 'follower' : view == 'followers' || !principal}">
+    <img [src]="user.profilePic ? user.profilePic : '../../../assets/images/default_profile_pic.png'" alt="Profile image" [routerLink]="['/user-profile']" [queryParams]="{id: user.id}" />
+    <p id="nameInput">{{user.firstName}} {{user.lastName}}</p>
+    <button *ngIf="view == 'following' && principal" (click)="unfollow()" mat-button>Unfollow</button>
+</div>

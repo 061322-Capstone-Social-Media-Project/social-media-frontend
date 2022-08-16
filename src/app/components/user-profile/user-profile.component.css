@@ -1,0 +1,39 @@
+.user-card-item {
+    margin-left: -12%;
+}
+
+.upf {
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-left: 1em;
+    width: 100%;
+}
+
+.follow-info {
+    margin-left: 1em;
+    margin-right: -50%;
+}
+
+#post-feed {
+    width: 95%;
+}
+
+mat-form-field {
+    width: 95%;
+}
+
+
+#buttonSpreader {
+    margin: .5em;
+}
+#follow-card:hover {
+    cursor: pointer;
+}
+.user-circle {
+    margin: 0 auto;
+    
+}
+.d-flex {
+    gap: 10px;
+}

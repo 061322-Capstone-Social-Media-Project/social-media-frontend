@@ -15,6 +15,18 @@ import { CommentComponent } from './components/comment/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FollowersComponent } from './components/followers/followers.component';
+import { FollowerCardComponent } from './components/follower-card/follower-card.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchCardComponent } from './components/search-card/search-card.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { FormsModule } from '@angular/forms';
+import { UserProfilePictureComponent } from './components/user-profile-picture/user-profile-picture.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { LikesComponent } from './components/likes/likes.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +39,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     UserCardComponent,
     NavbarComponent,
     UserInitialsPipe,
+    LikesComponent,
+    NotificationComponent,
+    FollowersComponent,
+    FollowerCardComponent,
+    SearchComponent,
+    SearchCardComponent,
+    UserProfileComponent,
+    UserUpdateComponent,
+    UserProfilePictureComponent,
+    ScrollToTopComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -35,6 +58,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

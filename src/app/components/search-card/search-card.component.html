@@ -1,0 +1,4 @@
+<div id="search-card" [routerLink]="['/user-profile']" [queryParams]="{id: user.id}">
+    <img [src]="user.profilePic ? user.profilePic : '../../../assets/images/default_profile_pic.png'" alt="Profile image" />
+    <p id="nameInput">{{user.firstName}} {{user.lastName}}</p>
+</div>

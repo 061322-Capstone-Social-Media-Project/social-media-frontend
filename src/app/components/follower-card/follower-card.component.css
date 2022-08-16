@@ -1,0 +1,49 @@
+div {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    margin: 10px 0;
+    padding: 5px; 
+    background-color: #fff;
+    border-radius: 5px;
+}
+.following {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+button {
+    width: 66px;
+    height: 36px;
+    background-color: #fff;
+    color: #f26925;
+    border: 1px solid #f26925;
+    padding: 0;
+}
+img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+img:hover {
+    cursor: pointer;
+}
+.follower p {
+    margin: 0 0 0 20px;
+}
+#nameInput {
+    margin: 0;
+    font-size: 16px;
+}
+.follower #nameInput {
+    margin-left: 20px;
+
+}
+button:hover {
+    background-color: #f26925;
+    color: #fff;
+    transition: .2s ease-in-out;
+}
+div:hover {
+    transform: scale(1.02);
+}

@@ -1,0 +1,77 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-4 user-card-item">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <div style="background-image: url({{user.profilePic}})" alt="Avatar" class="user-circle img-fluid"></div>
+          <h3 class="my-3">{{user.firstName}} {{user.lastName}}</h3>
+          <p class="text-muted mb-1">{{user.namePronunciation}}</p>
+          <p class="text-muted mb-4">{{user.location}}</p>
+          <div class="d-flex justify-content-center mb-2">
+            <!-- If viewing other profile -->
+            <button type="button" class="primaryBtn" mat-button *ngIf="user.id !== loggedInUser.id"
+              (click)="isFollowing ? unfollow() : follow()">{{isFollowing ? 'Unfollow' : 'Follow'}}</button>
+            <!-- If viewing own profile -->
+            <button type="button" class="primaryBtn" mat-button (click)="updateUser()"
+              *ngIf="user.id === loggedInUser.id">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="user.professionalURL" class="card mb-4">
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush rounded-3">
+            <li class="list-group-item d-flex justify-content-left align-items-center p-3">
+              <i class="fas fa-globe fa-lg text-warning"></i>
+              <p class="mb-0">Professional Profile</p>
+            </li>
+            <li class="list-group-item align-items-center p-3">
+              <a href="{{user.professionalURL}}">{{user.professionalURL}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div *ngIf="hobby1 || hobby2 || hobby3" class="card mb-4">
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush rounded-3">
+            <li class="list-group-item d-flex justify-content-left align-items-center p-3">
+              <i class="fas fa-globe fa-lg text-warning"></i>
+              <p class="mb-0">Hobbies</p>
+            </li>
+            <li class="list-group-item align-items-center p-3">
+              <p class="mb-0" *ngIf="hobby1">{{hobby1}}</p><br>
+              <p class="mb-0 " *ngIf="hobby2">{{hobby2}}</p><br>
+              <p class="mb-0" *ngIf="hobby3">{{hobby3}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="row">
+        <div class="col-md-8 upf">
+          <div class="w-100" id="post-feed" *ngFor="let post of posts">
+            <app-post [post]="post" *ngIf="user.id === post.author.id"></app-post>
+          </div>
+        </div>
+        <div *ngIf="followingCount > 0 || followerCount > 0" class="col-md-4 follow-info">
+          <div class="card mb-4 mb-md-0">
+            <div id="follow-card" class="card-body" [routerLink]="['/followers']" [state]="user">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-left align-items-center p-3">
+                  <i class="fas fa-globe fa-lg text-warning"></i>
+                  <p class="mb-0">Followers</p>
+                </li>
+                <li class="list-group-item align-items-center p-3">
+                  <p class="mb-4" *ngIf="followingCount > 0">Following: {{followingCount}} user{{followingCount > 1 ?
+                    's' : ''}}</p>
+                  <p class="mb-4" *ngIf="followerCount > 0">Followers: {{followerCount}} user{{followerCount > 1 ? 's' :
+                    ''}}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

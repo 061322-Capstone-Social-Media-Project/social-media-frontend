@@ -1,0 +1,17 @@
+.force-scroll {
+    overflow-y: auto;
+    height: 300px;
+    min-width: 300px;
+}
+.btn-group:hover {
+    background-color: #B9B9BA;
+}
+.badge{
+    background-color: #f26925;
+}
+.dropdown-item:hover {
+    background-color: #fcb214bb;
+}
+.dropdown-menu {
+    overflow-x: hidden;
+}

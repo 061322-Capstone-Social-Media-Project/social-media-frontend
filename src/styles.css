@@ -8,7 +8,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-height: 100vh;
-  background: #e2e2e2;
+  background: #72A4C2;
 }
 .app-header {
   justify-content: space-between;
@@ -108,18 +108,15 @@ body {
 .user-circle {
   width:10em;
   height: 10em;
-  border-radius: 7em;
-      
+  border-radius: 50%;
   border: 1px solid #888080;
-     
   margin-bottom: 1em;
-
-  background-image: url('./assets/images/favicon.png');
   background-size: cover;
 }
 
 .user-card {
-  width: 10em;
+  background-color: #474C55;
+  color: #fff;
   text-align: center;
   margin: 1em;
 }
@@ -139,9 +136,7 @@ body {
 }
 
 .header-image {
-  background-image: url('./assets/images/favicon.png');
   background-size: cover;
-
   border: 1px solid #888080;
 }
 
@@ -169,4 +164,36 @@ body {
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.clickable:hover{
+  cursor: pointer;
+}
+
+
+.mat-form-field{
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.primaryBtn{
+  background-color: #F26925;
+  color: #fff;
+}
+
+.secondaryBtn{
+  color: #F26925;
+  background-color: #fff;
+  border: 1px solid #F26925;
+  margin-right: 20px;
+}
+
+.primaryBtn:hover {
+  transform: scale(1.1);
+  transition: .2s ease-in-out;
+}
+
+.secondaryBtn:hover {
+  transform: scale(1.1);
+  transition: .2s ease-in-out;
 }

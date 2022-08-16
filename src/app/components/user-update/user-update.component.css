@@ -1,0 +1,27 @@
+.wrapper {
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+button {
+    cursor: pointer;
+    width: 66px;
+    height: 36px;
+    padding: 0;
+}
+
+.warn {
+    color: #ffffff;
+    background-color: #ff0000;
+}
+
+.warn:hover {
+    background-color: #e40000;
+
+}
