@@ -23,9 +23,8 @@
                 <input matInput formControlName="imageUrl">
             </mat-form-field>
             <div class="form-btns">
-                <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>
-                <span id="buttonSpreader"></span>
-                <button mat-raised-button color="primary" (click)="submitPost($event)">Post</button>
+                <button mat-button class="secondaryBtn" (click)="toggleCreatePost()">Cancel</button>
+                <button mat-button class="primaryBtn" (click)="submitPost($event)">Post</button>
             </div>
 
         </form>
