@@ -1,5 +1,6 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Observable } from 'rxjs';
 import { FollowerService } from 'src/app/services/follower.service';
 import { environment } from 'src/environments/environment';
 
@@ -28,16 +29,23 @@ describe('FollowersComponent', () => {
   });
 
   //Will need to test that removeFollowing is being called.
-  it('Should get message from child', () => {
+  it('Should get message from child and call removeFollowing', () => {
     let expectedId: number = 1;
     let actualId: number = 0;
+    
+    //need this observable to so removeFollowing will return a value to subscribers.
+    let testUserObserve = new Observable<any>;
+    const removeFollowingSpy = spyOn(followerService, 'removeFollowing').and.returnValue(testUserObserve);
+    const subSpy = spyOn(followerService.removeFollowing(expectedId), 'subscribe');
 
-    //const spyRemoveFollowing = spyOn(followerService, 'removeFollowing').and.stub();
     component.getMsgFromChild(expectedId);
+    followerService.removeFollowing(expectedId);
 
     actualId = component.unFollowUserId;
+
+    expect(removeFollowingSpy).toHaveBeenCalled();
+    expect(subSpy).toHaveBeenCalled();
     expect(actualId).toEqual(expectedId);
-    //expect(spyRemoveFollowing).toHaveBeenCalled();
   });
   
   it('Should increase the list of followers by 10 when going to next page', () => {

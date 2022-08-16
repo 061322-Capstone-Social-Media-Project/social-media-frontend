@@ -32,32 +32,36 @@ export class UserUpdateComponent implements OnInit {
 
 
   constructor(private authService: AuthService, private userService: UserProfileService, private router: Router, private hobbyService: HobbyService) {
-    this.currentUser = authService.currentUser;
-    this.id = this.currentUser.id;
-    this.email = this.currentUser.email;
-    this.firstName = this.currentUser.firstName;
-    this.lastName = this.currentUser.lastName;
-    this.username = this.currentUser.username;
-    this.password = this.currentUser.password;
-    this.professionalUrl = this.currentUser.professionalURL;
-    this.location = this.currentUser.location;
-    this.namePronunciation = this.currentUser.namePronunciation;
-    this.profilePic = this.currentUser.profilePic;
    }
 
   ngOnInit(): void {
-    this.hobbyService.getAllHobbies(this.id).subscribe(
+    this.userService.getUserById(this.authService.currentUser.id.toString()).subscribe(
       (response) => {
-        if(response !== null){
-        this.hobby1 = response.hobby1;
-        this.hobby2 = response.hobby2;
-        this.hobby3 = response.hobby3;
-        this.hobbyID = response.id;
-      }else{
-        this.isNullHobby = true;
-      }
-      }
-    )
+        this.currentUser = response;
+        this.id = response.id;
+        this.email = response.email;
+        this.firstName = response.firstName;
+        this.lastName = response.lastName;
+        this.username = response.username;
+        this.password = response.password;
+        this.professionalUrl = response.professionalURL;
+        this.location = response.location;
+        this.namePronunciation = response.namePronunciation;
+        this.profilePic = response.profilePic;
+        this.hobbyService.getAllHobbies(this.id).subscribe(
+          (response) => {
+            if(response !== null){
+            this.hobby1 = response.hobby1;
+            this.hobby2 = response.hobby2;
+            this.hobby3 = response.hobby3;
+            this.hobbyID = response.id;
+          }else{
+            this.isNullHobby = true;
+          }
+          }
+        )
+      });
+
   }
 
 

@@ -29,10 +29,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   constructor(private userProfileService: UserProfileService, private authService: AuthService, private followService: FollowerService,
      private postService: PostService, private router:Router, private route: ActivatedRoute, private hobbyService: HobbyService) { 
-      // this.ngOnInit();
   }
 
   ngOnInit(): void {
+    this.isFollowing = false;
     this.route.queryParams
       .subscribe(params => {
         this.id = params['id'];
@@ -79,13 +79,17 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   follow() {
-    this.followService.addFollowing(this.user.id).subscribe();
-    this.ngOnInit()
+    this.followService.addFollowing(this.user.id).subscribe(_ => {
+      this.ngOnInit();
+    });
+
   }
 
   unfollow() {
-    this.followService.removeFollowing(this.user.id).subscribe();
-    this.ngOnInit();
+    this.followService.removeFollowing(this.user.id).subscribe(_ => {
+      this.ngOnInit();
+    });
+
   }
 
   ngOnDestroy() {

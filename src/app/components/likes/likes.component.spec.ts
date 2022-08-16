@@ -17,7 +17,6 @@ describe('LikesComponent', () => {
       providers: [{provide: LikesService, useValue: likesServiceSpyObj}],
     }).compileComponents();
 
-    let likesServiceSpy = TestBed.get(LikesService);
 
   });
 
