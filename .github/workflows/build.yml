@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0 
       - name: Install dependencies
-        run: yarn
+        run: npm install
       - name: Test and coverage
         run: ng test --code-coverage
       - name: SonarCloud Scan
