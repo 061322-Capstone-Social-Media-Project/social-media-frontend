@@ -29,7 +29,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   constructor(private userProfileService: UserProfileService, private authService: AuthService, private followService: FollowerService,
      private postService: PostService, private router:Router, private route: ActivatedRoute, private hobbyService: HobbyService) { 
-      this.ngOnInit();
   }
 
   ngOnInit(): void {
