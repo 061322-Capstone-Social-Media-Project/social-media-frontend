@@ -1,4 +1,3 @@
-
 import { Notify } from './notification';
 import { notificationType } from './notificationType';
 
@@ -8,3 +7,4 @@ describe('Notification', () => {
     expect(new Notify(1, "test body", 1, notificationType.POST, "date", "read")).toBeTruthy();
   });
 });
+
