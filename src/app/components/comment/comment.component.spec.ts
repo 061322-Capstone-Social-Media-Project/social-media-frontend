@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LikesService } from 'src/app/services/likes.service';
 
 import { CommentComponent } from './comment.component';
 
@@ -20,4 +21,6 @@ describe('CommentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
 });

@@ -29,4 +29,26 @@ describe('LikesComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should call setLikes', () => {
+    const likesServiceSpyObj = TestBed.get(LikesService);
+    const likesServiceSpy = likesServiceSpyObj.setLikes as jasmine.Spy;
+    component.setLikes();
+    expect(likesServiceSpy).toHaveBeenCalled();
+  });
+
+  it('should call likeSwitch', () => {
+    const likesServiceSpyObj = TestBed.get(LikesService);
+    const likesServiceSpy = likesServiceSpyObj.setLikes as jasmine.Spy;
+    component.likeSwitch();
+    expect(likesServiceSpy).toHaveBeenCalled();
+  });
+
+  it('should call ngOnInit', () => {
+    const likesServiceSpyObj = TestBed.get(LikesService);
+    const likesServiceSpy = likesServiceSpyObj.setLikes as jasmine.Spy;
+    component.ngOnInit();
+    expect(likesServiceSpy).toHaveBeenCalled();
+  });
+
+
 });
