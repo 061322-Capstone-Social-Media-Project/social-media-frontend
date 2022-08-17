@@ -72,29 +72,24 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         }
       }
     )
-    // console.log("Current user: " + JSON.stringify(this.authService.currentUser));
   }
 
   updateUser(){
     this.router.navigate(['update-user']);
   }
 
-  toUserProfilePicture(){
-    this.router.navigate(['user-profile-picture']);
-  }
-
   follow() {
     this.followService.addFollowing(this.user.id).subscribe(_ => {
       this.ngOnInit();
     });
-    // this.ngOnInit()
+
   }
 
   unfollow() {
     this.followService.removeFollowing(this.user.id).subscribe(_ => {
       this.ngOnInit();
     });
-    // this.ngOnInit();
+
   }
 
   ngOnDestroy() {

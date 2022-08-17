@@ -32,7 +32,6 @@ export class UserUpdateComponent implements OnInit {
 
 
   constructor(private authService: AuthService, private userService: UserProfileService, private router: Router, private hobbyService: HobbyService) {
-    
    }
 
   ngOnInit(): void {
@@ -75,7 +74,7 @@ export class UserUpdateComponent implements OnInit {
             ['/user-profile'],
             { queryParams: { id: this.currentUser.id } }
           );
-          
+
         });
     if(this.isNullHobby === true){
       console.log(this.id);
