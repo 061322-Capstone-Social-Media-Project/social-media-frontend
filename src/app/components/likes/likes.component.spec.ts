@@ -43,12 +43,7 @@ describe('LikesComponent', () => {
     expect(likesServiceSpy).toHaveBeenCalled();
   });
 
-  it('should call ngOnInit', () => {
-    const likesServiceSpyObj = TestBed.get(LikesService);
-    const likesServiceSpy = likesServiceSpyObj.setLikes as jasmine.Spy;
-    component.ngOnInit();
-    expect(likesServiceSpy).toHaveBeenCalled();
-  });
+ 
 
 
 });

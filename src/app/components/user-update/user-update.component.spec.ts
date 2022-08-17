@@ -92,5 +92,6 @@ describe('UserUpdateComponent', () => {
     expect( component.currentUser ).toEqual( authService.currentUser );
   });
 
+
   
 })
