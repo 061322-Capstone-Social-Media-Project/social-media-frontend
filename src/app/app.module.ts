@@ -22,7 +22,6 @@ import { SearchCardComponent } from './components/search-card/search-card.compon
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { FormsModule } from '@angular/forms';
-import { UserProfilePictureComponent } from './components/user-profile-picture/user-profile-picture.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { LikesComponent } from './components/likes/likes.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -47,7 +46,6 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     SearchCardComponent,
     UserProfileComponent,
     UserUpdateComponent,
-    UserProfilePictureComponent,
     ScrollToTopComponent,
     DateAgoPipe
   ],
